@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "bun run build",
+  "installCommand": "bun install",
+  "env": {
+    "NEXT_RUNTIME": "nodejs"
+  },
+  "functions": {
+    "src/app/api/admin/match/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/admin/league/route.ts": {
+      "maxDuration": 15
+    }
+  }
+}

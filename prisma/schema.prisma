@@ -1,11 +1,20 @@
-// Cricket Prediction Platform — Prisma Schema
+// CricketPredict Prisma schema
+//
+// The same schema works for:
+//   - Local dev: SQLite file (DATABASE_URL=file:./db/custom.db)
+//   - Production (Vercel + Turso): libSQL (DATABASE_URL=libsql://...turso.io)
+//
+// Prisma auto-detects the right driver via the URL scheme.
+
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider  = "sqlite"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model League {
@@ -17,7 +26,7 @@ model League {
   matchesPlayed Int   @default(0)
   bestSystem     String?
   bestAccuracy   Float?
-  optimalWeights  String? // JSON string
+  optimalWeights  String?
   createdAt DateTime @default(now())
   teams     Team[]
   matches   Match[]
@@ -31,7 +40,6 @@ model Team {
   color     String
   leagueId  String
   league    League  @relation(fields: [leagueId], references: [id])
-  // Live state (rolled forward as matches are added)
   elo       Float    @default(1500)
   matches   Int      @default(0)
   wins      Int      @default(0)
@@ -47,8 +55,8 @@ model Team {
   chasingWins         Int @default(0)
   battingFirstTotalRuns Float @default(0)
   chasingTotalRuns      Float @default(0)
-  recentForm   String  @default("[]") // JSON array of 0/1
-  h2h          String  @default("{}") // JSON map of opponentId -> [wins, losses]
+  recentForm   String  @default("[]")
+  h2h          String  @default("{}")
   createdAt DateTime @default(now())
   homeMatches Match[] @relation("TeamA")
   awayMatches Match[] @relation("TeamB")
@@ -73,7 +81,7 @@ model Match {
   teamBWickets Int
   teamBOvers Float
   winnerId  String
-  battingFirstId String? // which team batted first
+  battingFirstId String?
   note      String?
   createdAt DateTime @default(now())
   predictions Prediction[]
@@ -87,8 +95,8 @@ model Prediction {
   teamA     Team     @relation("PredTeamA", fields: [teamAId], references: [id])
   teamBId   String
   teamB     Team     @relation("PredTeamB", fields: [teamBId], references: [id])
-  system    String   // ELO-Raw, Opt-Weighted, etc.
-  probA     Float     // P(team A wins)
+  system    String
+  probA     Float
   correct   Boolean
   createdAt DateTime @default(now())
 }
