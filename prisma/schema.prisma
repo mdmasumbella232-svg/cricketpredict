@@ -1,0 +1,94 @@
+// Cricket Prediction Platform — Prisma Schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model League {
+  id        String   @id
+  name      String
+  fullName  String
+  country   String
+  season    String
+  matchesPlayed Int   @default(0)
+  bestSystem     String?
+  bestAccuracy   Float?
+  optimalWeights  String? // JSON string
+  createdAt DateTime @default(now())
+  teams     Team[]
+  matches   Match[]
+}
+
+model Team {
+  id        String   @id
+  name      String
+  fullName  String
+  city      String?
+  color     String
+  leagueId  String
+  league    League  @relation(fields: [leagueId], references: [id])
+  // Live state (rolled forward as matches are added)
+  elo       Float    @default(1500)
+  matches   Int      @default(0)
+  wins      Int      @default(0)
+  totalRunsScored   Float @default(0)
+  totalBallsFaced    Float @default(0)
+  totalWicketsLost   Float @default(0)
+  totalRunsConceded  Float @default(0)
+  totalBallsBowled   Float @default(0)
+  totalWicketsTaken  Float @default(0)
+  battingFirstMatches Int @default(0)
+  battingFirstWins    Int @default(0)
+  chasingMatches      Int @default(0)
+  chasingWins         Int @default(0)
+  battingFirstTotalRuns Float @default(0)
+  chasingTotalRuns      Float @default(0)
+  recentForm   String  @default("[]") // JSON array of 0/1
+  h2h          String  @default("{}") // JSON map of opponentId -> [wins, losses]
+  createdAt DateTime @default(now())
+  homeMatches Match[] @relation("TeamA")
+  awayMatches Match[] @relation("TeamB")
+  predictionsA Prediction[] @relation("PredTeamA")
+  predictionsB Prediction[] @relation("PredTeamB")
+}
+
+model Match {
+  id        String   @id
+  leagueId  String
+  league    League   @relation(fields: [leagueId], references: [id])
+  matchNo   Int
+  date      String
+  teamAId   String
+  teamA     Team     @relation("TeamA", fields: [teamAId], references: [id])
+  teamAScore Int
+  teamAWickets Int
+  teamAOvers Float
+  teamBId   String
+  teamB     Team     @relation("TeamB", fields: [teamBId], references: [id])
+  teamBScore Int
+  teamBWickets Int
+  teamBOvers Float
+  winnerId  String
+  battingFirstId String? // which team batted first
+  note      String?
+  createdAt DateTime @default(now())
+  predictions Prediction[]
+}
+
+model Prediction {
+  id        String   @id @default(cuid())
+  matchId   String
+  match     Match    @relation(fields: [matchId], references: [id])
+  teamAId   String
+  teamA     Team     @relation("PredTeamA", fields: [teamAId], references: [id])
+  teamBId   String
+  teamB     Team     @relation("PredTeamB", fields: [teamBId], references: [id])
+  system    String   // ELO-Raw, Opt-Weighted, etc.
+  probA     Float     // P(team A wins)
+  correct   Boolean
+  createdAt DateTime @default(now())
+}
