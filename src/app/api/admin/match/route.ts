@@ -29,18 +29,19 @@ async function recomputeLeague(leagueId: string) {
     const bState = states[m.teamBId];
     if (!aState || !bState) continue;
 
-    if (aState.matches > 0 || bState.matches > 0) {
-      const preds = predictAllSystems(aState, bState, leagueId);
-      const mAWon = m.winnerId === m.teamAId;
-      for (const p of preds) {
-        await db.prediction.create({
-          data: {
-            matchId: m.id, teamAId: m.teamAId, teamBId: m.teamBId,
-            system: p.system, probA: p.probA, correct: (p.probA > 0.5) === mAWon,
-          },
-        });
-        predCount++;
-      }
+    // Generate predictions BEFORE applying this match's result.
+    // Even for the first match (both teams at 0 history), we generate a 0.5
+    // prediction — this matches the original Python backtest behavior.
+    const preds = predictAllSystems(aState, bState, leagueId);
+    const mAWon = m.winnerId === m.teamAId;
+    for (const p of preds) {
+      await db.prediction.create({
+        data: {
+          matchId: m.id, teamAId: m.teamAId, teamBId: m.teamBId,
+          system: p.system, probA: p.probA, correct: (p.probA > 0.5) === mAWon,
+        },
+      });
+      predCount++;
     }
 
     applyMatchResult(states, {

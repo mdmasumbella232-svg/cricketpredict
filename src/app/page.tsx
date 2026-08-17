@@ -36,6 +36,9 @@ export default function Home() {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [activeLeague, setActiveLeague] = useState<string>('IPL');
   const [loading, setLoading] = useState(true);
+  // refreshKey increments on any admin data change (add/delete match, create league).
+  // Passing it as `key` to tab components forces them to remount and refetch.
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const fetchLeagues = useCallback(async () => {
     setLoading(true);
@@ -52,7 +55,22 @@ export default function Home() {
 
   useEffect(() => { fetchLeagues(); }, [fetchLeagues]);
 
+  // Called by AdminTab after any data mutation. Refreshes leagues list (which
+  // updates hero stats + dropdown), bumps refreshKey (which forces all tabs
+  // to remount and refetch their data), and optionally switches to a new league.
+  const handleDataChanged = useCallback((opts?: { switchToLeague?: string }) => {
+    fetchLeagues();
+    setRefreshKey((k) => k + 1);
+    if (opts?.switchToLeague) {
+      setActiveLeague(opts.switchToLeague);
+    }
+  }, [fetchLeagues]);
+
   const current = leagues.find((l) => l.id === activeLeague);
+
+  // Aggregate stats across all leagues (for header badge)
+  const totalMatches = leagues.reduce((s, l) => s + l.matchCount, 0);
+  const totalLeagues = leagues.length;
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -71,9 +89,9 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Badge variant="outline" className="hidden sm:flex border-emerald-200 bg-emerald-50 text-emerald-700">
               <Zap className="mr-1 h-3 w-3" />
-              191 matches · 4 leagues
+              {totalMatches} matches · {totalLeagues} leagues
             </Badge>
-            <Button variant="ghost" size="sm" onClick={fetchLeagues} disabled={loading}>
+            <Button variant="ghost" size="sm" onClick={() => handleDataChanged()} disabled={loading}>
               <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
             </Button>
           </div>
@@ -88,7 +106,7 @@ export default function Home() {
               {current?.fullName || 'Select a league'}
             </h2>
             <p className="mt-1 text-sm text-slate-600">
-              {current?.country} · Season {current?.season} · {current?.teamCount || 0} teams · {current?.matchCount || 0} matches
+              {current ? `${current.country} · Season ${current.season} · ${current.teamCount} teams · ${current.matchCount} matches` : 'Loading…'}
             </p>
           </div>
           <div className="w-full sm:w-64">
@@ -108,7 +126,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero stat strip */}
+        {/* Hero stat strip (auto-refreshes when fetchLeagues runs) */}
         {current && (
           <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <StatCard
@@ -138,8 +156,8 @@ export default function Home() {
           </div>
         )}
 
-        {/* Tabs */}
-        <Tabs defaultValue="dashboard" className="w-full">
+        {/* Tabs. key={refreshKey} forces remount on data change, ensuring each tab refetches. */}
+        <Tabs defaultValue="dashboard" className="w-full" key={refreshKey}>
           <TabsList className="mb-4 grid w-full grid-cols-4 sm:grid-cols-7">
             <TabsTrigger value="dashboard" className="text-xs sm:text-sm">
               <Activity className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Dashboard</span>
@@ -182,7 +200,7 @@ export default function Home() {
             <InsightsTab leagues={leagues} />
           </TabsContent>
           <TabsContent value="admin" className="mt-0">
-            <AdminTab leagues={leagues} />
+            <AdminTab leagues={leagues} onDataChanged={handleDataChanged} activeLeague={activeLeague} />
           </TabsContent>
         </Tabs>
       </main>
@@ -190,9 +208,9 @@ export default function Home() {
       <footer className="mt-auto border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-6 text-center text-xs text-slate-500 sm:px-6 lg:px-8">
           <p>
-            CricketPredict · Validated on 191 matches across IPL 2026, PSL 2026, BBL 2025-26, and CPL 2025.
+            CricketPredict · Validated on {totalMatches} matches across {totalLeagues} T20 leagues.
             <br className="hidden sm:inline" />
-            {' '}Methodology: Optimized-Weighted Ensemble of ELO, momentum, win%, run-rate, form, and H2H. Average winning accuracy: 61.4%.
+            {' '}Methodology: Optimized-Weighted Ensemble of ELO, momentum, win%, run-rate, form, and H2H.
           </p>
           <p className="mt-1">Built by Z.ai Cricket Analytics · Predictions are probabilistic estimates, not certainties.</p>
         </div>

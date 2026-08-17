@@ -408,24 +408,23 @@ async function main() {
     const teamBId = `${leagueId}_${teamB}`;
     const states = statesByLeague[leagueId];
 
-    // Generate predictions BEFORE applying this match's result
-    // (skip if either team has 0 matches - not enough state to predict meaningfully, but we still record for completeness)
-    if (states[teamAId].matches > 0 || states[teamBId].matches > 0) {
-      const preds = predictAllSystems(states[teamAId], states[teamBId], leagueId);
-      const aWon = winner === teamA;
-      for (const p of preds) {
-        await db.prediction.create({
-          data: {
-            matchId: `${leagueId}_${matchNo}`,
-            teamAId,
-            teamBId,
-            system: p.system,
-            probA: p.probA,
-            correct: (p.probA > 0.5) === aWon,
-          },
-        });
-        predCount++;
-      }
+    // Generate predictions BEFORE applying this match's result.
+    // Even for the first match (both teams at 0 history), we generate a 0.5
+    // prediction — this matches the original Python backtest behavior.
+    const preds = predictAllSystems(states[teamAId], states[teamBId], leagueId);
+    const aWon = winner === teamA;
+    for (const p of preds) {
+      await db.prediction.create({
+        data: {
+          matchId: `${leagueId}_${matchNo}`,
+          teamAId,
+          teamBId,
+          system: p.system,
+          probA: p.probA,
+          correct: (p.probA > 0.5) === aWon,
+        },
+      });
+      predCount++;
     }
 
     // Apply result

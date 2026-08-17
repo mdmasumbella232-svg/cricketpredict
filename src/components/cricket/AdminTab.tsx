@@ -19,7 +19,11 @@ interface TeamOption {
   elo: number;
 }
 
-export default function AdminTab({ leagues }: { leagues: League[] }) {
+export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
+  leagues: League[];
+  onDataChanged: (opts?: { switchToLeague?: string }) => void;
+  activeLeague: string;
+}) {
   const [tab, setTab] = useState('match');
 
   return (
@@ -33,8 +37,8 @@ export default function AdminTab({ leagues }: { leagues: League[] }) {
               Add new matches or leagues here. When you add a match, the system automatically:
               (1) inserts it into the database, (2) deletes all old predictions for that league,
               (3) re-runs the walk-forward simulation through every match in chronological order,
-              (4) regenerates predictions from all 6 systems, and (5) updates all team ELO ratings.
-              All other tabs (Dashboard, Rankings, etc.) will reflect the new data immediately.
+              (4) regenerates predictions from all 6 systems, (5) updates all team ELO ratings, and
+              (6) refreshes every tab and the hero stats above — instantly, no page reload needed.
             </p>
           </div>
         </div>
@@ -51,10 +55,10 @@ export default function AdminTab({ leagues }: { leagues: League[] }) {
         </TabsList>
 
         <TabsContent value="match" className="mt-4">
-          <AddMatchForm leagues={leagues} />
+          <AddMatchForm leagues={leagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
         </TabsContent>
         <TabsContent value="league" className="mt-4">
-          <CreateLeagueForm onCreated={() => setTimeout(() => window.location.reload(), 1500)} />
+          <CreateLeagueForm onDataChanged={onDataChanged} />
         </TabsContent>
       </Tabs>
     </div>
@@ -64,8 +68,20 @@ export default function AdminTab({ leagues }: { leagues: League[] }) {
 // ============================================================
 // Add Match Form
 // ============================================================
-function AddMatchForm({ leagues }: { leagues: League[] }) {
-  const [leagueId, setLeagueId] = useState(leagues[0]?.id || 'IPL');
+function AddMatchForm({ leagues, onDataChanged, initialLeague }: {
+  leagues: League[];
+  onDataChanged: (opts?: { switchToLeague?: string }) => void;
+  initialLeague: string;
+}) {
+  const [leagueId, setLeagueId] = useState(initialLeague || leagues[0]?.id || 'IPL');
+
+  // Sync form's leagueId when the parent's activeLeague changes (e.g. user
+  // switches the page-level dropdown while Admin tab is open).
+  useEffect(() => {
+    if (initialLeague && initialLeague !== leagueId) {
+      setLeagueId(initialLeague);
+    }
+  }, [initialLeague]);
   const [teams, setTeams] = useState<TeamOption[]>([]);
   const [teamA, setTeamA] = useState('');
   const [teamB, setTeamB] = useState('');
@@ -176,6 +192,8 @@ function AddMatchForm({ leagues }: { leagues: League[] }) {
       setAScore(''); setAWkts(''); setAOvers('');
       setBScore(''); setBWkts(''); setBOvers('');
       setNote('');
+      // Trigger global refresh — updates hero stats, all tabs, insights, etc.
+      onDataChanged();
     } catch (e) {
       toast.error('Network error');
     } finally {
@@ -373,7 +391,7 @@ function AddMatchForm({ leagues }: { leagues: League[] }) {
 
       <Separator className="my-4" />
 
-      <RecentMatches leagueId={leagueId} />
+      <RecentMatches leagueId={leagueId} onDataChanged={onDataChanged} />
     </Card>
   );
 }
@@ -381,7 +399,7 @@ function AddMatchForm({ leagues }: { leagues: League[] }) {
 // ============================================================
 // Recent Matches (with delete buttons)
 // ============================================================
-function RecentMatches({ leagueId }: { leagueId: string }) {
+function RecentMatches({ leagueId, onDataChanged }: { leagueId: string; onDataChanged: (opts?: { switchToLeague?: string }) => void }) {
   const [matches, setMatches] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -411,10 +429,12 @@ function RecentMatches({ leagueId }: { leagueId: string }) {
         return;
       }
       toast.success(`Match #${matchNo} deleted. ${j.predictionsRegenerated} predictions regenerated.`);
-      // Refresh list
+      // Refresh local list
       const r2 = await fetch(`/api/matches?league=${leagueId}&limit=200`);
       const j2 = await r2.json();
       setMatches(j2.matches || []);
+      // Trigger global refresh
+      onDataChanged();
     } catch {
       toast.error('Network error');
     }
@@ -461,7 +481,7 @@ function RecentMatches({ leagueId }: { leagueId: string }) {
 // ============================================================
 // Create League Form
 // ============================================================
-function CreateLeagueForm({ onCreated }: { onCreated: () => void }) {
+function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchToLeague?: string }) => void }) {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [fullName, setFullName] = useState('');
@@ -491,8 +511,11 @@ function CreateLeagueForm({ onCreated }: { onCreated: () => void }) {
         toast.error(j.error || 'Failed to create league');
         return;
       }
-      toast.success(`League ${id.toUpperCase()} created! Reloading...`);
-      onCreated();
+      toast.success(`League ${id.toUpperCase()} created! Switching to it now.`);
+      // Reset form
+      setId(''); setName(''); setFullName(''); setCountry(''); setSeason('');
+      // Trigger global refresh AND switch to the new league
+      onDataChanged({ switchToLeague: id.toUpperCase() });
     } catch {
       toast.error('Network error');
     } finally {
