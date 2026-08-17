@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
-import { Plus, Trash2, Trophy, RefreshCw, Database, Info, CheckCircle2, XCircle } from 'lucide-react';
+import { Plus, Trash2, Trophy, RefreshCw, Database, Info, CheckCircle2, XCircle, Pencil, AlertTriangle } from 'lucide-react';
 import type { League } from '@/app/page';
 
 interface TeamOption {
@@ -34,23 +34,25 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
           <div className="text-sm text-amber-900">
             <p className="font-semibold">Admin Console</p>
             <p className="mt-1 text-amber-800">
-              Add new matches or leagues here. When you add a match, the system automatically:
-              (1) inserts it into the database, (2) deletes all old predictions for that league,
-              (3) re-runs the walk-forward simulation through every match in chronological order,
-              (4) regenerates predictions from all 6 systems, (5) updates all team ELO ratings, and
-              (6) refreshes every tab and the hero stats above — instantly, no page reload needed.
+              Add matches, create new leagues, or edit/delete existing leagues. When you add or
+              delete a match, the system automatically re-runs the walk-forward simulation,
+              regenerates all 6 systems' predictions, updates team ELO ratings, and refreshes
+              every tab — instantly, no page reload needed.
             </p>
           </div>
         </div>
       </Card>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="match">
-            <Plus className="mr-1.5 h-4 w-4" /> Add Match
+            <Plus className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Add Match</span>
           </TabsTrigger>
           <TabsTrigger value="league">
-            <Trophy className="mr-1.5 h-4 w-4" /> Create League
+            <Trophy className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Create League</span>
+          </TabsTrigger>
+          <TabsTrigger value="manage">
+            <Pencil className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Manage Leagues</span>
           </TabsTrigger>
         </TabsList>
 
@@ -59,6 +61,9 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
         </TabsContent>
         <TabsContent value="league" className="mt-4">
           <CreateLeagueForm onDataChanged={onDataChanged} />
+        </TabsContent>
+        <TabsContent value="manage" className="mt-4">
+          <ManageLeaguesForm leagues={leagues} onDataChanged={onDataChanged} />
         </TabsContent>
       </Tabs>
     </div>
@@ -599,4 +604,228 @@ function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchTo
       </Button>
     </Card>
   );
+}
+
+// ============================================================
+// Manage Leagues (Edit + Delete existing leagues)
+// ============================================================
+function ManageLeaguesForm({ leagues, onDataChanged }: {
+  leagues: League[];
+  onDataChanged: (opts?: { switchToLeague?: string }) => void;
+}) {
+  const [editingId, setEditingId] = useState<string | null>(null);
+
+  if (leagues.length === 0) {
+    return (
+      <Card className="p-6 text-center">
+        <Trophy className="mx-auto h-8 w-8 text-slate-300" />
+        <p className="mt-2 text-sm text-slate-500">No leagues yet. Create one first.</p>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <Card className="p-4">
+        <div className="mb-3 flex items-center gap-2">
+          <Pencil className="h-4 w-4 text-slate-500" />
+          <h3 className="text-base font-bold tracking-tight">Manage Existing Leagues</h3>
+          <Badge variant="outline" className="ml-auto border-slate-200 bg-slate-50 text-slate-700">
+            {leagues.length} leagues
+          </Badge>
+        </div>
+        <div className="space-y-2">
+          {leagues.map((l) => (
+            <div
+              key={l.id}
+              className="rounded-lg border border-slate-200 bg-white p-3 transition-colors hover:bg-slate-50"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-md bg-slate-900 px-2 py-0.5 text-xs font-bold text-white">
+                      {l.id}
+                    </span>
+                    <span className="truncate font-semibold">{l.fullName}</span>
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500">
+                    {l.country} · Season {l.season} · {l.teamCount} teams · {l.matchCount} matches
+                    <span className="mx-1.5">·</span>
+                    Best: <span className="font-semibold">{l.bestSystem.replace('Optimized-Weighted', 'Opt-W')}</span> ({(l.bestAccuracy * 100).toFixed(1)}%)
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setEditingId(editingId === l.id ? null : l.id)}
+                  >
+                    <Pencil className="mr-1 h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">{editingId === l.id ? 'Cancel' : 'Edit'}</span>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-rose-200 text-rose-700 hover:bg-rose-50"
+                    onClick={() => deleteLeague(l, onDataChanged)}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {editingId && (
+        <EditLeagueForm
+          league={leagues.find((l) => l.id === editingId)!}
+          onDataChanged={onDataChanged}
+          onClose={() => setEditingId(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ============================================================
+// Edit League Form (inline, appears when Edit is clicked)
+// ============================================================
+function EditLeagueForm({ league, onDataChanged, onClose }: {
+  league: League;
+  onDataChanged: (opts?: { switchToLeague?: string }) => void;
+  onClose: () => void;
+}) {
+  const [name, setName] = useState(league.name);
+  const [fullName, setFullName] = useState(league.fullName);
+  const [country, setCountry] = useState(league.country);
+  const [season, setSeason] = useState(league.season);
+  const [weights, setWeights] = useState(
+    league.optimalWeights || { elo: 0.30, rr: 0.15, form: 0.10, wpct: 0.15, h2h: 0.10, momentum: 0.20 }
+  );
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async () => {
+    if (!name || !fullName || !country || !season) {
+      toast.error('Fill in all fields');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const r = await fetch(`/api/admin/league/${league.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, fullName, country, season, weights }),
+      });
+      const j = await r.json();
+      if (!r.ok) {
+        toast.error(j.error || 'Failed to update league');
+        return;
+      }
+      toast.success(`League ${league.id} updated!`);
+      onDataChanged();
+      onClose();
+    } catch {
+      toast.error('Network error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const totalW = Object.values(weights).reduce((s, v) => s + v, 0);
+
+  return (
+    <Card className="p-5 border-emerald-200">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Pencil className="h-5 w-5 text-emerald-600" />
+          <h3 className="text-lg font-bold tracking-tight">Edit League: {league.id}</h3>
+        </div>
+        <Button size="sm" variant="ghost" onClick={onClose}>✕</Button>
+      </div>
+
+      <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Short Name</Label>
+          <Input className="mt-1" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Full Name</Label>
+          <Input className="mt-1" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Country</Label>
+          <Input className="mt-1" value={country} onChange={(e) => setCountry(e.target.value)} />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Season</Label>
+          <Input className="mt-1" value={season} onChange={(e) => setSeason(e.target.value)} />
+        </div>
+      </div>
+
+      <Separator className="my-4" />
+
+      <div className="mb-4">
+        <div className="mb-2 flex items-center justify-between">
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights</Label>
+          <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
+            Sum: {totalW.toFixed(2)}
+          </Badge>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {([
+            ['elo', 'ELO'],
+            ['momentum', 'Momentum'],
+            ['rr', 'Run Rate'],
+            ['form', 'Recent Form'],
+            ['wpct', 'Win %'],
+            ['h2h', 'Head-to-Head'],
+          ] as const).map(([k, label]) => (
+            <div key={k}>
+              <Label className="text-[10px] uppercase text-slate-500">{label}</Label>
+              <Input
+                type="number"
+                step="0.05"
+                min="0"
+                max="1"
+                value={weights[k]}
+                onChange={(e) => setWeights({ ...weights, [k]: parseFloat(e.target.value) || 0 })}
+              />
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-slate-500">
+          <Info className="mr-1 inline h-3 w-3" />
+          Changing weights affects future predictions only. Existing predictions are not recomputed.
+        </p>
+      </div>
+
+      <Button onClick={submit} disabled={submitting} className="w-full">
+        {submitting ? <RefreshCw className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
+        <span className="ml-1.5">{submitting ? 'Saving...' : 'Save Changes'}</span>
+      </Button>
+    </Card>
+  );
+}
+
+// ============================================================
+// Delete League (with confirmation)
+// ============================================================
+async function deleteLeague(league: League, onDataChanged: (opts?: { switchToLeague?: string }) => void) {
+  const msg = `Delete league ${league.id} (${league.fullName})?\n\nThis will permanently delete:\n  • ${league.teamCount} teams\n  • ${league.matchCount} matches\n  • All associated predictions\n\nThis cannot be undone.`;
+  if (!confirm(msg)) return;
+  try {
+    const r = await fetch(`/api/admin/league/${league.id}`, { method: 'DELETE' });
+    const j = await r.json();
+    if (!r.ok) {
+      toast.error(j.error || 'Failed to delete league');
+      return;
+    }
+    toast.success(`League ${league.id} deleted. Removed ${j.deleted.matches} matches, ${j.deleted.teams} teams, ${j.deleted.predictions} predictions.`);
+    // Switch back to IPL (or first available) and refresh
+    onDataChanged({ switchToLeague: 'IPL' });
+  } catch {
+    toast.error('Network error');
+  }
 }
