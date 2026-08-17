@@ -484,23 +484,49 @@ function RecentMatches({ leagueId, onDataChanged }: { leagueId: string; onDataCh
 }
 
 // ============================================================
-// Create League Form
+// Create League Form (simplified — just type a name!)
 // ============================================================
 function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchToLeague?: string }) => void }) {
+  const [fullName, setFullName] = useState('');
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [fullName, setFullName] = useState('');
   const [country, setCountry] = useState('');
-  const [season, setSeason] = useState('');
+  const [season, setSeason] = useState(new Date().getFullYear().toString());
   const [weights, setWeights] = useState({ elo: 0.30, rr: 0.15, form: 0.10, wpct: 0.15, h2h: 0.10, momentum: 0.20 });
   const [submitting, setSubmitting] = useState(false);
 
+  // Auto-generate League ID and short name from the full name.
+  // e.g. "Bangladesh Premier League" → id="BPL", name="BPL"
+  // e.g. "SA20" → id="SA20", name="SA20"
+  const autoId = (() => {
+    if (!fullName.trim()) return '';
+    // If the name is already short (≤6 chars, no spaces), use it as-is
+    if (fullName.length <= 6 && !fullName.includes(' ')) {
+      return fullName.toUpperCase();
+    }
+    // Otherwise take first letter of each word
+    return fullName
+      .split(/\s+/)
+      .map((w) => w[0] || '')
+      .join('')
+      .toUpperCase()
+      .slice(0, 6);
+  })();
+
+  const effectiveId = id || autoId;
+  const effectiveName = name || autoId || fullName;
+
   const submit = async () => {
-    if (!id || !name || !fullName || !country || !season) {
-      toast.error('Fill in all fields');
+    if (!fullName.trim()) {
+      toast.error('Please enter a league name');
       return;
     }
-    if (id.includes('_') || id.includes(' ')) {
+    if (!effectiveId) {
+      toast.error('Could not generate League ID — please enter one in Advanced');
+      return;
+    }
+    if (effectiveId.includes('_') || effectiveId.includes(' ')) {
       toast.error('League ID must not contain _ or spaces');
       return;
     }
@@ -509,18 +535,27 @@ function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchTo
       const r = await fetch('/api/admin/league', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id.toUpperCase(), name, fullName, country, season, weights }),
+        body: JSON.stringify({
+          id: effectiveId.toUpperCase(),
+          name: effectiveName,
+          fullName,
+          country: country || 'Unknown',
+          season: season || new Date().getFullYear().toString(),
+          weights,
+        }),
       });
       const j = await r.json();
       if (!r.ok) {
         toast.error(j.error || 'Failed to create league');
         return;
       }
-      toast.success(`League ${id.toUpperCase()} created! Switching to it now.`);
+      toast.success(`League ${effectiveId.toUpperCase()} created! Switching to it now.`);
       // Reset form
-      setId(''); setName(''); setFullName(''); setCountry(''); setSeason('');
+      setFullName(''); setId(''); setName(''); setCountry('');
+      setSeason(new Date().getFullYear().toString());
+      setShowAdvanced(false);
       // Trigger global refresh AND switch to the new league
-      onDataChanged({ switchToLeague: id.toUpperCase() });
+      onDataChanged({ switchToLeague: effectiveId.toUpperCase() });
     } catch {
       toast.error('Network error');
     } finally {
@@ -537,70 +572,128 @@ function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchTo
         <h3 className="text-lg font-bold tracking-tight">Create a New League</h3>
       </div>
 
-      <div className="mb-4 grid gap-3 sm:grid-cols-2">
-        <div>
-          <Label className="text-xs uppercase tracking-wide text-slate-500">League ID (short, e.g. "BPL")</Label>
-          <Input className="mt-1" value={id} onChange={(e) => setId(e.target.value.toUpperCase())} placeholder="BPL" />
-        </div>
-        <div>
-          <Label className="text-xs uppercase tracking-wide text-slate-500">Short Name</Label>
-          <Input className="mt-1" value={name} onChange={(e) => setName(e.target.value)} placeholder="Bangladesh Premier League" />
-        </div>
-        <div>
-          <Label className="text-xs uppercase tracking-wide text-slate-500">Full Name</Label>
-          <Input className="mt-1" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Bangladesh Premier League 2026" />
-        </div>
-        <div>
-          <Label className="text-xs uppercase tracking-wide text-slate-500">Country</Label>
-          <Input className="mt-1" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Bangladesh" />
-        </div>
-        <div>
-          <Label className="text-xs uppercase tracking-wide text-slate-500">Season</Label>
-          <Input className="mt-1" value={season} onChange={(e) => setSeason(e.target.value)} placeholder="2026" />
-        </div>
+      <p className="mb-4 text-sm text-slate-600">
+        Just type the league name — everything else auto-generates. Use Advanced only if you want to customize.
+      </p>
+
+      {/* The ONE required field */}
+      <div className="mb-4">
+        <Label className="text-xs uppercase tracking-wide text-slate-500">League Name *</Label>
+        <Input
+          className="mt-1 text-lg"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder="e.g. Bangladesh Premier League"
+          autoFocus
+        />
+        {fullName && (
+          <div className="mt-2 rounded-md bg-slate-50 p-2 text-xs text-slate-600">
+            <span className="font-semibold">Will create:</span>
+            <br />
+            ID: <span className="font-mono font-bold">{effectiveId || '—'}</span>
+            <span className="mx-2">·</span>
+            Short name: <span className="font-bold">{effectiveName || '—'}</span>
+            <span className="mx-2">·</span>
+            Season: <span className="font-bold">{season}</span>
+            <span className="mx-2">·</span>
+            Country: <span className="font-bold">{country || 'Unknown'}</span>
+          </div>
+        )}
       </div>
 
-      <Separator className="my-4" />
+      {/* Advanced toggle */}
+      <button
+        type="button"
+        onClick={() => setShowAdvanced(!showAdvanced)}
+        className="mb-4 text-xs font-semibold text-slate-500 hover:text-slate-700"
+      >
+        {showAdvanced ? '▼ Hide advanced' : '▶ Show advanced (edit ID, country, season, weights)'}
+      </button>
 
-      {/* Weights */}
-      <div className="mb-4">
-        <div className="mb-2 flex items-center justify-between">
-          <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights (must sum to 1.0)</Label>
-          <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
-            Sum: {totalW.toFixed(2)}
-          </Badge>
-        </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {([
-            ['elo', 'ELO'],
-            ['momentum', 'Momentum'],
-            ['rr', 'Run Rate'],
-            ['form', 'Recent Form'],
-            ['wpct', 'Win %'],
-            ['h2h', 'Head-to-Head'],
-          ] as const).map(([k, label]) => (
-            <div key={k}>
-              <Label className="text-[10px] uppercase text-slate-500">{label}</Label>
+      {showAdvanced && (
+        <>
+          <div className="mb-4 grid gap-3 sm:grid-cols-2">
+            <div>
+              <Label className="text-xs uppercase tracking-wide text-slate-500">League ID (auto: {autoId || '—'})</Label>
               <Input
-                type="number"
-                step="0.05"
-                min="0"
-                max="1"
-                value={weights[k]}
-                onChange={(e) => setWeights({ ...weights, [k]: parseFloat(e.target.value) || 0 })}
+                className="mt-1"
+                value={id}
+                onChange={(e) => setId(e.target.value.toUpperCase())}
+                placeholder={autoId || 'BPL'}
               />
             </div>
-          ))}
-        </div>
-        <p className="mt-2 text-xs text-slate-500">
-          <Info className="mr-1 inline h-3 w-3" />
-          Default weights match IPL. Tune per league: higher ELO weight for shorter seasons, more momentum for high-variance leagues.
-        </p>
-      </div>
+            <div>
+              <Label className="text-xs uppercase tracking-wide text-slate-500">Short Name (auto: {autoId || '—'})</Label>
+              <Input
+                className="mt-1"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={autoId || 'BPL'}
+              />
+            </div>
+            <div>
+              <Label className="text-xs uppercase tracking-wide text-slate-500">Country</Label>
+              <Input
+                className="mt-1"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                placeholder="Bangladesh"
+              />
+            </div>
+            <div>
+              <Label className="text-xs uppercase tracking-wide text-slate-500">Season</Label>
+              <Input
+                className="mt-1"
+                value={season}
+                onChange={(e) => setSeason(e.target.value)}
+                placeholder="2026"
+              />
+            </div>
+          </div>
 
-      <Button onClick={submit} disabled={submitting} className="w-full">
+          <Separator className="my-4" />
+
+          {/* Weights */}
+          <div className="mb-4">
+            <div className="mb-2 flex items-center justify-between">
+              <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights (must sum to 1.0)</Label>
+              <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
+                Sum: {totalW.toFixed(2)}
+              </Badge>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {([
+                ['elo', 'ELO'],
+                ['momentum', 'Momentum'],
+                ['rr', 'Run Rate'],
+                ['form', 'Recent Form'],
+                ['wpct', 'Win %'],
+                ['h2h', 'Head-to-Head'],
+              ] as const).map(([k, label]) => (
+                <div key={k}>
+                  <Label className="text-[10px] uppercase text-slate-500">{label}</Label>
+                  <Input
+                    type="number"
+                    step="0.05"
+                    min="0"
+                    max="1"
+                    value={weights[k]}
+                    onChange={(e) => setWeights({ ...weights, [k]: parseFloat(e.target.value) || 0 })}
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-slate-500">
+              <Info className="mr-1 inline h-3 w-3" />
+              Defaults match IPL (proven 63% accuracy). Higher ELO for shorter seasons, more momentum for high-variance leagues.
+            </p>
+          </div>
+        </>
+      )}
+
+      <Button onClick={submit} disabled={submitting || !fullName.trim()} className="w-full">
         {submitting ? <RefreshCw className="h-4 w-4 animate-spin" /> : <Trophy className="h-4 w-4" />}
-        <span className="ml-1.5">{submitting ? 'Creating...' : 'Create League'}</span>
+        <span className="ml-1.5">{submitting ? 'Creating...' : `Create League${effectiveId ? ` (${effectiveId})` : ''}`}</span>
       </Button>
     </Card>
   );
