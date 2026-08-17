@@ -656,10 +656,30 @@ function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchTo
           {/* Weights */}
           <div className="mb-4">
             <div className="mb-2 flex items-center justify-between">
-              <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights (must sum to 1.0)</Label>
-              <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
-                Sum: {totalW.toFixed(2)}
-              </Badge>
+              <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights</Label>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
+                  Sum: {totalW.toFixed(2)} {Math.abs(totalW - 1) < 0.05 ? '✓' : '✗ (must be 1.00)'}
+                </Badge>
+                {Math.abs(totalW - 1) >= 0.05 && totalW > 0 && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-7 px-2 text-xs"
+                    onClick={() => {
+                      // Auto-normalize: scale all weights so they sum to 1.0
+                      const normalized: any = {};
+                      for (const k of ['elo', 'rr', 'form', 'wpct', 'h2h', 'momentum']) {
+                        normalized[k] = (weights[k as keyof typeof weights] / totalW);
+                      }
+                      setWeights(normalized);
+                      toast.success('Weights auto-normalized to sum 1.00');
+                    }}
+                  >
+                    Auto-fix
+                  </Button>
+                )}
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {([
@@ -685,7 +705,8 @@ function CreateLeagueForm({ onDataChanged }: { onDataChanged: (opts?: { switchTo
             </div>
             <p className="mt-2 text-xs text-slate-500">
               <Info className="mr-1 inline h-3 w-3" />
-              Defaults match IPL (proven 63% accuracy). Higher ELO for shorter seasons, more momentum for high-variance leagues.
+              Defaults match IPL (proven 63% accuracy). If sum ≠ 1.00, click <b>Auto-fix</b> to normalize.
+              Higher ELO for shorter seasons, more momentum for high-variance leagues.
             </p>
           </div>
         </>
@@ -862,9 +883,28 @@ function EditLeagueForm({ league, onDataChanged, onClose }: {
       <div className="mb-4">
         <div className="mb-2 flex items-center justify-between">
           <Label className="text-xs uppercase tracking-wide text-slate-500">Prediction Weights</Label>
-          <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
-            Sum: {totalW.toFixed(2)}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className={Math.abs(totalW - 1) < 0.05 ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-rose-200 bg-rose-50 text-rose-700'}>
+              Sum: {totalW.toFixed(2)} {Math.abs(totalW - 1) < 0.05 ? '✓' : '✗ (must be 1.00)'}
+            </Badge>
+            {Math.abs(totalW - 1) >= 0.05 && totalW > 0 && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-7 px-2 text-xs"
+                onClick={() => {
+                  const normalized: any = {};
+                  for (const k of ['elo', 'rr', 'form', 'wpct', 'h2h', 'momentum']) {
+                    normalized[k] = (weights[k as keyof typeof weights] / totalW);
+                  }
+                  setWeights(normalized);
+                  toast.success('Weights auto-normalized to sum 1.00');
+                }}
+              >
+                Auto-fix
+              </Button>
+            )}
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {([
@@ -890,7 +930,7 @@ function EditLeagueForm({ league, onDataChanged, onClose }: {
         </div>
         <p className="mt-2 text-xs text-slate-500">
           <Info className="mr-1 inline h-3 w-3" />
-          Changing weights affects future predictions only. Existing predictions are not recomputed.
+          Changing weights affects future predictions only. If sum ≠ 1.00, click <b>Auto-fix</b>.
         </p>
       </div>
 
