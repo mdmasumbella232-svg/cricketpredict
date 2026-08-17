@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { Activity, Trophy, BarChart3, ListOrdered, Cpu, Zap, RefreshCw } from 'lucide-react';
+import { Activity, Trophy, BarChart3, ListOrdered, Cpu, Zap, RefreshCw, Shield } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,7 @@ import RankingsTab from '@/components/cricket/RankingsTab';
 import MatchLogTab from '@/components/cricket/MatchLogTab';
 import SystemComparisonTab from '@/components/cricket/SystemComparisonTab';
 import InsightsTab from '@/components/cricket/InsightsTab';
+import AdminTab from '@/components/cricket/AdminTab';
 
 export interface League {
   id: string;
@@ -139,24 +140,27 @@ export default function Home() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="mb-4 grid w-full grid-cols-3 sm:grid-cols-6">
+          <TabsList className="mb-4 grid w-full grid-cols-4 sm:grid-cols-7">
             <TabsTrigger value="dashboard" className="text-xs sm:text-sm">
-              <Activity className="mr-1 h-4 w-4" /> Dashboard
+              <Activity className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger value="predict" className="text-xs sm:text-sm">
-              <Zap className="mr-1 h-4 w-4" /> Predict
+              <Zap className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Predict</span>
             </TabsTrigger>
             <TabsTrigger value="rankings" className="text-xs sm:text-sm">
-              <Trophy className="mr-1 h-4 w-4" /> Rankings
+              <Trophy className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Rankings</span>
             </TabsTrigger>
             <TabsTrigger value="matches" className="text-xs sm:text-sm">
-              <ListOrdered className="mr-1 h-4 w-4" /> Match Log
+              <ListOrdered className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Log</span>
             </TabsTrigger>
             <TabsTrigger value="systems" className="text-xs sm:text-sm">
-              <Cpu className="mr-1 h-4 w-4" /> Systems
+              <Cpu className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Systems</span>
             </TabsTrigger>
             <TabsTrigger value="insights" className="text-xs sm:text-sm">
-              <BarChart3 className="mr-1 h-4 w-4" /> Insights
+              <BarChart3 className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Insights</span>
+            </TabsTrigger>
+            <TabsTrigger value="admin" className="text-xs sm:text-sm">
+              <Shield className="mr-1 h-4 w-4" /> <span className="hidden sm:inline">Admin</span>
             </TabsTrigger>
           </TabsList>
           <TabsContent value="dashboard" className="mt-0">
@@ -176,6 +180,9 @@ export default function Home() {
           </TabsContent>
           <TabsContent value="insights" className="mt-0">
             <InsightsTab leagues={leagues} />
+          </TabsContent>
+          <TabsContent value="admin" className="mt-0">
+            <AdminTab leagues={leagues} />
           </TabsContent>
         </Tabs>
       </main>
