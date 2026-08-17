@@ -1,0 +1,4389 @@
+{
+  "results": {
+    "ELO-Raw": {
+      "n": 43,
+      "accuracy": 0.5348837209302325,
+      "brier": 0.2502171283822374,
+      "logloss": 0.6941087716226121,
+      "correct": 23
+    },
+    "ELO+Momentum": {
+      "n": 43,
+      "accuracy": 0.4883720930232558,
+      "brier": 0.2607020972666682,
+      "logloss": 0.718405068256751,
+      "correct": 21
+    },
+    "Weighted-Score": {
+      "n": 43,
+      "accuracy": 0.5116279069767442,
+      "brier": 0.2558461102612767,
+      "logloss": 0.7067044628612059,
+      "correct": 22
+    },
+    "Opt-Weighted (IPL-tuned)": {
+      "n": 43,
+      "accuracy": 0.4883720930232558,
+      "brier": 0.26132801542027556,
+      "logloss": 0.7195092835477219,
+      "correct": 21
+    },
+    "Opt-Weighted (PSL-tuned)": {
+      "n": 43,
+      "accuracy": 0.4883720930232558,
+      "brier": 0.25809720217062526,
+      "logloss": 0.7101319664423108,
+      "correct": 21
+    },
+    "Opt-Weighted (BBL-tuned)": {
+      "n": 43,
+      "accuracy": 0.6511627906976745,
+      "brier": 0.2548834053897217,
+      "logloss": 0.7048520107191141,
+      "correct": 28
+    },
+    "Pythagorean": {
+      "n": 43,
+      "accuracy": 0.6046511627906976,
+      "brier": 0.2424604396223243,
+      "logloss": 0.6783405988946255,
+      "correct": 26
+    },
+    "Bayesian-Shrunk": {
+      "n": 43,
+      "accuracy": 0.46511627906976744,
+      "brier": 0.25253069605182077,
+      "logloss": 0.6983114058111098,
+      "correct": 20
+    },
+    "LogReg": {
+      "n": 33,
+      "accuracy": 0.42424242424242425,
+      "brier": 0.309947485914013,
+      "logloss": 0.852111565078832,
+      "correct": 14
+    },
+    "RandomForest": {
+      "n": 33,
+      "accuracy": 0.45454545454545453,
+      "brier": 0.2809435340205479,
+      "logloss": 0.7640920306018688,
+      "correct": 15
+    },
+    "GradientBoosting": {
+      "n": 33,
+      "accuracy": 0.45454545454545453,
+      "brier": 0.49341360289657443,
+      "logloss": 3.7604489580127853,
+      "correct": 15
+    },
+    "Ensemble-Stacked": {
+      "n": 33,
+      "accuracy": 0.45454545454545453,
+      "brier": 0.3196870404519777,
+      "logloss": 0.8672651940828664,
+      "correct": 15
+    },
+    "Baseline-50/50": {
+      "n": 43,
+      "accuracy": 0.4186046511627907,
+      "brier": 0.25,
+      "logloss": 0.6931471805599452,
+      "correct": 18
+    }
+  },
+  "bbl_optimal_weights": {
+    "elo": 0.6,
+    "rr": 0.2,
+    "form": 0.2,
+    "wpct": 0.1,
+    "h2h": 0.05,
+    "momentum": 0
+  },
+  "ipl_optimal_weights": {
+    "elo": 0.3,
+    "rr": 0.15,
+    "form": 0.1,
+    "wpct": 0.15,
+    "h2h": 0.1,
+    "momentum": 0.2
+  },
+  "psl_optimal_weights": {
+    "elo": 0.5,
+    "rr": 0.05,
+    "form": 0.05,
+    "wpct": 0.1,
+    "h2h": 0.15,
+    "momentum": 0.15
+  },
+  "final_team_stats": {
+    "PRS": {
+      "matches": 12,
+      "wins": 9,
+      "elo": 1646.726783161627,
+      "bat_run_rate": 9.381980640357408,
+      "bowl_run_rate": 8.316109422492401,
+      "form_last5": 1.0,
+      "win_pct": 0.75,
+      "bf_win_pct": 0.4,
+      "ch_win_pct": 1.0
+    },
+    "SYS": {
+      "matches": 12,
+      "wins": 7,
+      "elo": 1564.427467022048,
+      "bat_run_rate": 8.414746543778802,
+      "bowl_run_rate": 7.969811320754717,
+      "form_last5": 0.6,
+      "win_pct": 0.5833333333333334,
+      "bf_win_pct": 0.3333333333333333,
+      "ch_win_pct": 0.8333333333333334
+    },
+    "MLR": {
+      "matches": 10,
+      "wins": 3,
+      "elo": 1385.331647962404,
+      "bat_run_rate": 8.105084745762712,
+      "bowl_run_rate": 9.217973231357552,
+      "form_last5": 0.2,
+      "win_pct": 0.3,
+      "bf_win_pct": 0.125,
+      "ch_win_pct": 1.0
+    },
+    "BRH": {
+      "matches": 10,
+      "wins": 5,
+      "elo": 1506.7597498105447,
+      "bat_run_rate": 8.910485933503836,
+      "bowl_run_rate": 9.334494773519163,
+      "form_last5": 0.6,
+      "win_pct": 0.5,
+      "bf_win_pct": 0.25,
+      "ch_win_pct": 0.6666666666666666
+    },
+    "HBH": {
+      "matches": 11,
+      "wins": 7,
+      "elo": 1554.9280942911805,
+      "bat_run_rate": 9.070945945945946,
+      "bowl_run_rate": 8.916256157635468,
+      "form_last5": 0.6,
+      "win_pct": 0.6363636363636364,
+      "bf_win_pct": 0.25,
+      "ch_win_pct": 0.8571428571428571
+    },
+    "SYT": {
+      "matches": 10,
+      "wins": 2,
+      "elo": 1386.7981586240155,
+      "bat_run_rate": 8.625,
+      "bowl_run_rate": 9.647482014388489,
+      "form_last5": 0.2,
+      "win_pct": 0.2,
+      "bf_win_pct": 0.14285714285714285,
+      "ch_win_pct": 0.3333333333333333
+    },
+    "ADS": {
+      "matches": 10,
+      "wins": 4,
+      "elo": 1461.0130268042565,
+      "bat_run_rate": 7.772105742935278,
+      "bowl_run_rate": 8.043898156277436,
+      "form_last5": 0.4,
+      "win_pct": 0.4,
+      "bf_win_pct": 0.25,
+      "ch_win_pct": 0.5
+    },
+    "MLS": {
+      "matches": 11,
+      "wins": 6,
+      "elo": 1494.015072323924,
+      "bat_run_rate": 8.579285059578368,
+      "bowl_run_rate": 7.817733990147783,
+      "form_last5": 0.4,
+      "win_pct": 0.5454545454545454,
+      "bf_win_pct": 0.0,
+      "ch_win_pct": 1.0
+    }
+  },
+  "per_match_preds": {
+    "ELO-Raw": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.4540780772195163,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.4586481380987735,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.4281985838313695,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5379895229393235,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.534607861432869,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3972045259210472,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.4836032416494215,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.3658722740356217,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.45270329012226845,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.500301107027656,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.6626380507565379,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.5999758129288066,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.4724267396373568,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.45061478693194496,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.5206270754700858,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.6226390629431645,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.3135167733809151,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.34854316922558076,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.6953965825344416,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.528741189193443,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.45117527011855757,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6180599780838562,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6167910649124687,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5329732708034555,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5808748845948956,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.6296238635159253,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5091345313239776,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.45693509591379494,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.35908369968063863,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6047101905558888,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.597620224498334,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.3462980638344445,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.68535407425514,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.520592474656324,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.5101671394747057,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.4627464661030494,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5018277724942409,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.5403697970304182,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.4818342524054476,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5322264231362651,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "ELO+Momentum": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.3790780772195163,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.38364813809877346,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.27819858383136953,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5379895229393235,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.6096078614328689,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3222045259210472,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.4836032416494215,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.26587227403562175,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.4277032901222685,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.47530110702765593,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.7626380507565379,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.6374758129288066,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.4599267396373568,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.42561478693194493,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.5331270754700858,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.6676390629431646,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.2235167733809151,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.28854316922558076,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.7778965825344416,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.543741189193443,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.4211752701185576,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6480599780838562,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6467910649124687,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5329732708034555,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.6408748845948955,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.6596238635159253,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5091345313239776,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.42693509591379497,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.29908369968063864,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6047101905558888,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.627620224498334,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.2862980638344445,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.7753540742551399,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.49059247465632394,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.5701671394747057,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.4327464661030494,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.47182777249424096,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.5703697970304182,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5118342524054476,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5322264231362651,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Weighted-Score": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.410449924254352,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.3756807267311264,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.2788405473391765,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5272049323134216,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.6288346641764841,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3630575015712679,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.452763748004122,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.31829868432633646,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.4517930395435086,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.4671395212836543,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.7039158000189547,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.6500102558236746,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.45681290524344964,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.4226960425108104,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.49824591287595876,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.6249025586919329,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.2762888166738113,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.3117961352235158,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.7122765388845358,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.5400053610242188,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.47784734712443644,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6093973151109184,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6169059530653301,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5796554110202125,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5820097437743933,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5593057887091472,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5046277437249028,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.39794115046375816,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.3790368975651902,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6226797089622514,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5911480932575491,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.38528790652586564,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.716732777795596,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.4988873198578566,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.540306784170787,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.4065272742942735,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.532026715934779,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.48987425610659224,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5085205841908863,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.563483812979365,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Opt-Weighted (IPL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.38940566763797607,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.3352790010059795,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.21809383665493476,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5214044594965405,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.6562086247659745,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.33930776711202165,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.4611830152817876,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.2863864944707596,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.4447374232821816,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.45593956416879,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.7311752316572444,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.6675093527554351,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.45659652971496273,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.39972620919461044,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.5061840248809628,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.650830830145172,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.2597901214488122,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.28571200704541044,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.7253838963192986,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.5423797612137342,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.4656669469330785,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6080624299896369,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6151952587240261,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5902804001567284,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.6010027665159741,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5464102189499489,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5225995877742388,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.37698169361791006,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.3663053389340181,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6258260844500132,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5939527368980132,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.3941133199770732,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.7489956710846507,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.48338635072633634,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.5632500821598323,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.38577840193068175,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5332946708625077,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.48604955352114626,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5202060117455569,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5749350239843226,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Opt-Weighted (PSL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.41976645343379854,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.3785522555748359,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.30231071241752605,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5223306290079095,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.6034126861618059,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3678177327390928,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.48050230175369785,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.3251444077711686,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.45016045714296793,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.47293363086732576,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.69211363085503,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.6729101094233344,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.46825287242659697,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.37598798450431486,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.516562171815022,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.6801659018923232,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.30033674983530345,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.27798793670536914,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.6945365984535428,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.533123062748622,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.45652575702511583,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.5990781345634213,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6017815122063295,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.6057827750402917,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5913746855337592,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5261291421992103,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5677346275019564,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.3698631743333928,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.37147930713597577,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6484094377056933,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.586615668765338,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.43530699885946883,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.7542036787937649,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.4926991067713084,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.5451502165098264,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.37695527597366923,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5609959992851989,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.46483110331921607,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.506969038210698,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5984749711886742,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Opt-Weighted (BBL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5000000000000001,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5000000000000001,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5000000000000001,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.40726652663293167,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.3887840251835311,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.291099854179293,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5314236381883353,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.6219128162097448,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3610300823190479,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.4521431901787835,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.3159621282041773,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.44944106295712677,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.47070693359181276,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.7093576107486667,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.6427602605156594,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.4557513514905117,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.4331228141848142,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.49988763617562404,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.6208425386511847,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.26732479705037626,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.31651418252666386,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.7235575463182201,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.5410909444553632,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.4734414347256373,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6182857121185105,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.6248857025633582,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5669291487272428,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5870704752689788,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5827704495803502,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.4946647407552544,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.4097148995502866,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.36846588111019424,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6169943339517643,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5976472702292908,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.35992235310404636,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.7173374424668796,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.5017104022316348,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.540319018064972,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.41773279827571697,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5186305353468337,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.5067884325515466,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5072245212827526,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5523013293283149,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Pythagorean": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.49999999900000003,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.49999999900000003,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.49999999900000003,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.44345937026800597,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.4930462323741919,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.41004666283743013,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5269259005320627,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.5839497216487408,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.45283801520465095,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.406473502939473,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.4339048007710082,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.4895627229516655,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.48750086026236583,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.5900316084390989,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.5929059817753742,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.450020002456395,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.5038809716322017,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.4460531827717917,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.4908283336890107,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.34453693268223934,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.43080081029083706,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.6269292470263786,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.5253645972744058,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.5466103224095763,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.5716718334803002,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.585093184421327,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5478557683912091,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5017290768778294,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5177012865142578,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.4258677113553628,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.443316152950635,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.4792351928533066,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.5735949466723624,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5455461724813382,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.4073310460319804,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.5784705313579114,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.521531378189638,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.4975948084912663,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.44909286784803165,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5277866065094947,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.4672333900065396,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5085397549346062,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.522028755113743,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Bayesian-Shrunk": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.5228350187040872,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.5148493077003182,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.48221689294802467,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5150618009817606,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.5532095697868796,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.3785037579023688,
+        "winner": "SYT",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.4776310813975047,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.5118796202149827,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.661337933740506,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.6364975750653588,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.46159719444572794,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.4380373223474211,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.38722764242015056,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.37642584962911557,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.5337520053626192,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.38786097945198905,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.6159320282329425,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.48855480240727994,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.4642227157543978,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.6491009673668076,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.4017299550375545,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.4063728978829381,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.55908806642991,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5403262759556938,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.6069088448034976,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5277336803875117,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5184263757774555,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.3912952695041919,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.5412285351204076,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.514308141400981,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.4687717870582131,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.4316619287918349,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.39598509017533473,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.4147193356183048,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.6327884297752743,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.5913493052320781,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5931789221341272,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.5889636507058211,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.41588345549995714,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5806877432149204,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "LogReg": [
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.8970958290583464,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.5165356599502424,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.8406710981118762,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.875761213404816,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.9087163752694388,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.7334189851200782,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.8630470511260016,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.4589694762813739,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.8165821229467081,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.2859332901214241,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.6130864211422951,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.6615588791603614,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.47466910444463023,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.686466346909969,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.29552748520310473,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.3160310763057637,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.6184338023971168,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.7369536947492153,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.47753442583472977,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.25480429076508054,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.526610644860736,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.6152540050422407,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.5964296034235594,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.4353675368408156,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.8245919897754604,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.07127038868704731,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.35444880649647237,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.3482759048218766,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.639001238897766,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.4918714075264161,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.39102466448527307,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5613234222195882,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5545149015988896,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "RandomForest": [
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.695,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.33,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.53,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.445,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.67875,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.69,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.565,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.825,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.28,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.4158333333333333,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.5625,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.2727678571428572,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.6296130952380953,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.5536607142857143,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.33516865079365077,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.463640873015873,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5982519841269841,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.46515350877192985,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.3666892230576441,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.33506422305764416,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.5807976190476191,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.6125119047619048,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5985518925518925,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.6473846153846153,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.6985416666666666,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.4462506105006105,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.31096668609168604,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.5915274309024309,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.4089499250749251,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.3896806399010346,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.48442808608230437,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.6630026709401711,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "GradientBoosting": [
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.9999820735804197,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 2.6611117144049838e-05,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 2.6611117144049838e-05,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.9999793727620442,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.9999793727620442,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.9999793727620442,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.00045981110149447555,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.9999804252509051,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.9999804252509051,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 2.3445102462624865e-05,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.9999788422988397,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.014920377503107554,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.0006466615866740686,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.6711025888680989,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.9950350279546739,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.002555790163733288,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.9974037730547245,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.998769084330467,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.8664095732668767,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.02319429453545492,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.001973491566732715,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.9950660475511526,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.9988180906229243,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.9393184932109909,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.9964828613162369,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.9999504015182485,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.39959886358959607,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.00917791784028981,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.9994315455918377,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.046361288331102694,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.29515970694706906,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.2645392420864912,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.9985520783476002,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Ensemble-Stacked": [
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.8640259675462554,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.28218742368912886,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.4568992364096734,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.7735801953889534,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.8624819160104943,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.8077994526273741,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.4545022874091653,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.6746499671774263,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.8805208493992044,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.18865224507462894,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.676299532258156,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.4129930855544896,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.24936120772472048,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.662394010338721,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.6147410758144977,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.21791850575438262,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.6931594828225714,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.7779915877355554,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.6030325026245121,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.2148959361193932,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.2878827864950377,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.7303725572136708,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.7359198662694628,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.6577459742012329,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.8228198221587709,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.5899208189573208,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.40009942686222627,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.22280683625128414,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.7433200717973448,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.3157275403108146,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.3586216704444589,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.4367635834627946,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.7386898836288869,
+        "winner": "PRS",
+        "correct": true
+      }
+    ],
+    "Baseline-50/50": [
+      {
+        "match": 1,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 2,
+        "team_a": "MLR",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": true
+      },
+      {
+        "match": 3,
+        "team_a": "HBH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 4,
+        "team_a": "SYS",
+        "team_b": "ADS",
+        "prob_a": 0.5,
+        "winner": "ADS",
+        "correct": false
+      },
+      {
+        "match": 5,
+        "team_a": "MLS",
+        "team_b": "HBH",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 6,
+        "team_a": "BRH",
+        "team_b": "PRS",
+        "prob_a": 0.5,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "SYT",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "MLR",
+        "team_b": "HBH",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "SYT",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "ADS",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "SYS",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 12,
+        "team_a": "PRS",
+        "team_b": "HBH",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "BRH",
+        "team_b": "ADS",
+        "prob_a": 0.5,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "MLS",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "HBH",
+        "team_b": "MLR",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "SYT",
+        "team_b": "PRS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "ADS",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "MLR",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 19,
+        "team_a": "HBH",
+        "team_b": "PRS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 20,
+        "team_a": "BRH",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 21,
+        "team_a": "SYT",
+        "team_b": "HBH",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "MLS",
+        "team_b": "MLR",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "PRS",
+        "team_b": "ADS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "SYS",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "ADS",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 26,
+        "team_a": "PRS",
+        "team_b": "MLR",
+        "prob_a": 0.5,
+        "winner": "MLR",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "MLS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "HBH",
+        "team_b": "ADS",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "BRH",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "BRH",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "MLR",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "ADS",
+        "team_b": "PRS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "SYT",
+        "team_b": "MLR",
+        "prob_a": 0.5,
+        "winner": "SYT",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "MLS",
+        "team_b": "ADS",
+        "prob_a": 0.5,
+        "winner": "MLS",
+        "correct": true
+      },
+      {
+        "match": 35,
+        "team_a": "HBH",
+        "team_b": "BRH",
+        "prob_a": 0.5,
+        "winner": "BRH",
+        "correct": false
+      },
+      {
+        "match": 36,
+        "team_a": "MLR",
+        "team_b": "PRS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": false
+      },
+      {
+        "match": 37,
+        "team_a": "SYS",
+        "team_b": "SYT",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 38,
+        "team_a": "ADS",
+        "team_b": "MLR",
+        "prob_a": 0.5,
+        "winner": "ADS",
+        "correct": true
+      },
+      {
+        "match": 39,
+        "team_a": "PRS",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 40,
+        "team_a": "BRH",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": false
+      },
+      {
+        "match": 41,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": true
+      },
+      {
+        "match": 42,
+        "team_a": "HBH",
+        "team_b": "MLS",
+        "prob_a": 0.5,
+        "winner": "HBH",
+        "correct": true
+      },
+      {
+        "match": 43,
+        "team_a": "SYS",
+        "team_b": "HBH",
+        "prob_a": 0.5,
+        "winner": "SYS",
+        "correct": true
+      },
+      {
+        "match": 44,
+        "team_a": "PRS",
+        "team_b": "SYS",
+        "prob_a": 0.5,
+        "winner": "PRS",
+        "correct": true
+      }
+    ]
+  }
+}
