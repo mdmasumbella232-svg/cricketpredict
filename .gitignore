@@ -57,3 +57,16 @@ server.log
 /db/*.db-journal
 /db/*.db-wal
 /db/*.db-shm
+
+# Sandbox-specific dev orchestration (not part of the deployed app)
+/.zscripts/
+/tool-results/
+/examples/
+/mini-services/
+/tests/
+/Caddyfile
+
+# Analysis artifacts (kept locally in download/ but not committed)
+/download/
+/dev.log
+/server.log
