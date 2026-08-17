@@ -8,8 +8,7 @@
 // "libsql://" or "https://" (Turso connection strings).
 
 import { PrismaClient } from '@prisma/client';
-import { PrismaLibSql } from '@prisma/adapter-libsql';
-import { createClient, type Client } from '@libsql/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
@@ -20,13 +19,10 @@ function createPrismaClient(): PrismaClient {
   const isTurso = databaseUrl.startsWith('libsql://') || databaseUrl.startsWith('https://');
 
   if (isTurso) {
-    // Production: connect to Turso via libSQL adapter
+    // Production: connect to Turso via libSQL adapter.
+    // PrismaLibSQL takes a config object { url, authToken }, NOT a pre-created client.
     const authToken = process.env.TURSO_AUTH_TOKEN || process.env.DATABASE_AUTH_TOKEN;
-    const libsqlClient: Client = createClient({
-      url: databaseUrl,
-      authToken,
-    });
-    const adapter = new PrismaLibSql(libsqlClient);
+    const adapter = new PrismaLibSQL({ url: databaseUrl, authToken });
     return new PrismaClient({
       adapter,
       log: process.env.NODE_ENV === 'development' ? ['query', 'warn', 'error'] : ['error'],
