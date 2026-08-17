@@ -1,0 +1,3560 @@
+{
+  "results": {
+    "ELO-Raw": {
+      "n": 32,
+      "accuracy": 0.40625,
+      "brier": 0.2670101388579036,
+      "logloss": 0.7319816617756706,
+      "correct": 13
+    },
+    "ELO+Momentum": {
+      "n": 32,
+      "accuracy": 0.46875,
+      "brier": 0.28455678489043723,
+      "logloss": 0.7836929346974917,
+      "correct": 15
+    },
+    "Weighted-Score": {
+      "n": 32,
+      "accuracy": 0.375,
+      "brier": 0.27886159443857583,
+      "logloss": 0.7550152868155717,
+      "correct": 12
+    },
+    "Opt-Weighted (IPL-tuned)": {
+      "n": 32,
+      "accuracy": 0.40625,
+      "brier": 0.286845744498366,
+      "logloss": 0.7732052567960473,
+      "correct": 13
+    },
+    "Opt-Weighted (PSL-tuned)": {
+      "n": 32,
+      "accuracy": 0.40625,
+      "brier": 0.28530906954050406,
+      "logloss": 0.769422600334672,
+      "correct": 13
+    },
+    "Opt-Weighted (BBL-tuned)": {
+      "n": 32,
+      "accuracy": 0.4375,
+      "brier": 0.27737452735963153,
+      "logloss": 0.7527506162422155,
+      "correct": 14
+    },
+    "Opt-Weighted (CPL-tuned)": {
+      "n": 32,
+      "accuracy": 0.46875,
+      "brier": 0.28990787566172604,
+      "logloss": 0.7829692010248541,
+      "correct": 15
+    },
+    "Pythagorean": {
+      "n": 32,
+      "accuracy": 0.375,
+      "brier": 0.26005603228918084,
+      "logloss": 0.7135239308694634,
+      "correct": 12
+    },
+    "Bayesian-Shrunk": {
+      "n": 32,
+      "accuracy": 0.4375,
+      "brier": 0.2518962946086477,
+      "logloss": 0.6970890155475215,
+      "correct": 14
+    },
+    "LogReg": {
+      "n": 24,
+      "accuracy": 0.5,
+      "brier": 0.3824245426116139,
+      "logloss": 1.20874763289102,
+      "correct": 12
+    },
+    "RandomForest": {
+      "n": 24,
+      "accuracy": 0.4583333333333333,
+      "brier": 0.3169289044911953,
+      "logloss": 0.8496992102061555,
+      "correct": 11
+    },
+    "GradientBoosting": {
+      "n": 24,
+      "accuracy": 0.4166666666666667,
+      "brier": 0.5444292078976241,
+      "logloss": 3.7896385748670145,
+      "correct": 10
+    },
+    "Ensemble-Stacked": {
+      "n": 24,
+      "accuracy": 0.4583333333333333,
+      "brier": 0.39329756341144234,
+      "logloss": 1.0919938948335606,
+      "correct": 11
+    },
+    "Baseline-50/50": {
+      "n": 32,
+      "accuracy": 0.40625,
+      "brier": 0.25,
+      "logloss": 0.6931471805599453,
+      "correct": 13
+    }
+  },
+  "cpl_optimal_weights": {
+    "elo": 0.2,
+    "rr": 0.1,
+    "form": 0.2,
+    "wpct": 0.15,
+    "h2h": 0.05,
+    "momentum": 0.3
+  },
+  "ipl_optimal_weights": {
+    "elo": 0.3,
+    "rr": 0.15,
+    "form": 0.1,
+    "wpct": 0.15,
+    "h2h": 0.1,
+    "momentum": 0.2
+  },
+  "psl_optimal_weights": {
+    "elo": 0.5,
+    "rr": 0.05,
+    "form": 0.05,
+    "wpct": 0.1,
+    "h2h": 0.15,
+    "momentum": 0.15
+  },
+  "bbl_optimal_weights": {
+    "elo": 0.6,
+    "rr": 0.2,
+    "form": 0.2,
+    "wpct": 0.1,
+    "h2h": 0.05,
+    "momentum": 0.0
+  },
+  "final_team_stats": {
+    "SKNP": {
+      "matches": 10,
+      "wins": 4,
+      "elo": 1454.3471857969578,
+      "bat_run_rate": 8.430769230769231,
+      "bowl_run_rate": 8.744063324538258,
+      "form_last5": 0.4,
+      "win_pct": 0.4,
+      "bf_win_pct": 0.5,
+      "ch_win_pct": 0.25
+    },
+    "ABF": {
+      "matches": 10,
+      "wins": 5,
+      "elo": 1487.2979934597724,
+      "bat_run_rate": 7.9162303664921465,
+      "bowl_run_rate": 8.500445235975068,
+      "form_last5": 0.4,
+      "win_pct": 0.5,
+      "bf_win_pct": 0.2,
+      "ch_win_pct": 0.8
+    },
+    "GAW": {
+      "matches": 12,
+      "wins": 7,
+      "elo": 1538.4672152212966,
+      "bat_run_rate": 8.410220014194463,
+      "bowl_run_rate": 8.084257206208425,
+      "form_last5": 0.6,
+      "win_pct": 0.5833333333333334,
+      "bf_win_pct": 0.42857142857142855,
+      "ch_win_pct": 0.8
+    },
+    "BT": {
+      "matches": 9,
+      "wins": 2,
+      "elo": 1421.0172919907188,
+      "bat_run_rate": 8.425047438330171,
+      "bowl_run_rate": 8.64722483537159,
+      "form_last5": 0.4,
+      "win_pct": 0.2222222222222222,
+      "bf_win_pct": 0.2,
+      "ch_win_pct": 0.25
+    },
+    "TKR": {
+      "matches": 13,
+      "wins": 9,
+      "elo": 1586.945042814125,
+      "bat_run_rate": 8.844444444444445,
+      "bowl_run_rate": 8.364,
+      "form_last5": 0.6,
+      "win_pct": 0.6923076923076923,
+      "bf_win_pct": 0.5714285714285714,
+      "ch_win_pct": 0.8333333333333334
+    },
+    "SLK": {
+      "matches": 10,
+      "wins": 5,
+      "elo": 1511.9252707171295,
+      "bat_run_rate": 9.25090909090909,
+      "bowl_run_rate": 9.1010101010101,
+      "form_last5": 0.2,
+      "win_pct": 0.5,
+      "bf_win_pct": 0.5,
+      "ch_win_pct": 0.5
+    }
+  },
+  "per_match_preds": {
+    "ELO-Raw": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.5459219227804837,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.4540780772195163,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.4957705354885277,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4702348645313744,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.4786717096212145,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.49817613457209553,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.4798878551886117,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5226471560042556,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.515932621493839,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.40437222240875076,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.49374345265132186,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6121440224807384,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.6464205512122452,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5655081518174394,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5903253794237936,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7340244638095104,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5441263533871774,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.3916816828129208,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.40985845888953776,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.4235462332962313,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.20292993163420744,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.6869908232588207,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5588669936709305,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.45856884238963874,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.2946160393761083,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.37895008796473045,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6193388566654378,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.4732002178357991,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5146670399787198,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.4987639936847028,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5045944556968052,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "ELO+Momentum": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.6209219227804836,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.3790780772195163,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.4957705354885277,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4452348645313744,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.4036717096212145,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5356761345720955,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.4298878551886117,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5976471560042556,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.530932621493839,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.32937222240875075,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5037434526513218,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6821440224807384,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.7589205512122452,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5855081518174394,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.6128253794237936,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.8240244638095103,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5741263533871774,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.3166816828129208,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.34985845888953776,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.3935462332962313,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.08292993163420745,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.7469908232588206,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5588669936709305,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.42856884238963877,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.2346160393761083,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.31895008796473046,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6493388566654378,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.4432002178357991,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5146670399787198,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.4987639936847028,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5345944556968052,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Weighted-Score": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.6575766357080302,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.4024233642919699,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.5297428752672808,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4880026399936285,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.3888507823642927,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5389019883827909,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.4082555899141087,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5818093310345445,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.46961150482327246,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.3365380765340421,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.49392545379668235,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6478702822085006,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.6875853006402726,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5384000056060279,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5889322554848839,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7437036098116613,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5794541057756261,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.36389914021973757,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.3730914470476895,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.4087372037912285,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.22624265287059514,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.6872299719424347,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.581535163038469,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.4273988676793653,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.3089634846603867,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.3555457697110232,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6208071317459162,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.48923771386995474,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.51217789608289,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.49865953410803077,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5167752000762315,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Opt-Weighted (IPL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.6922831323306756,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.3827168676693244,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.537426711539783,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4868277045103111,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.35808659498287,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5574791191665892,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.3908833964221369,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.6174195373286452,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.46331183330293246,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.31696932303140996,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.48097976307552454,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6836537677577259,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.7264403988264856,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5431497329444418,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5885993669232767,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7748093355732102,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.6020027811286872,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.3401932274226839,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.3356999715291376,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.38691279538281614,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.20093787967102236,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.7110419491767349,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5886027836954073,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.4008800949864831,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.28372046447588056,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.3274659956365521,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6401668701216378,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.47803586540821336,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5102843454031175,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5009443473207376,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5280686091160569,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Opt-Weighted (PSL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.632463146555752,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.41753685344424796,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.5232837847086721,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4837031806493201,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.40666421550944254,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5371801602177013,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.4305829408828237,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5856987081779172,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.44331032636517975,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.36323866330730364,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.43782396875237023,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.696075531578204,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.6902983534270599,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5505865050417897,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5794132740772764,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7872367069053505,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.6214133731596715,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.36590374893272964,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.32012908835124193,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.35963942511276453,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.2206512658773571,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.7338936456957732,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.6132001063192223,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.37788756861801653,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.25432466581383206,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.31037822420760003,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6704300549289431,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.4730698200481685,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5099199311258604,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.501840581934329,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5204364095598321,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Opt-Weighted (BBL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5000000000000001,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.6439668646350705,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.39951139623449494,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.5209185992615215,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.47955122804639694,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.39697084223310414,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5337165673651056,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.41346849240629413,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5748598385267055,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.4834222916255169,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.3363769929190987,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5043956880848961,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6411308650780716,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.6901779495748666,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5440300935849945,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5945196218398213,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7471041053436783,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5698305820219209,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.3610962085155038,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.3834784567350688,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.4157330207272473,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.20739405149698956,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.688076026278908,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5736281290637397,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.4387425175013669,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.30731098843496113,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.35923967897620396,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6163586843920235,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.48533244222251193,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5133877117680297,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.49736654300653904,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5172685693993524,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Opt-Weighted (CPL-tuned)": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.7281887548871171,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.34681124511288297,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.537451141026522,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4745518030068741,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.31789106332191336,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5820694127777262,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.3689222642814246,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.6657796915524301,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.5013745555352883,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.29047954868760667,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5073198420503497,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.6924358451718172,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.7822102658843237,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5520998219629611,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.587816244615518,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.7785633665726164,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5910970921810296,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.3059621516151226,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.3280856953051393,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.3991918635885441,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.15979191978068158,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.7027779661178233,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5525209034159858,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.4080867299909887,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.29105173822201563,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.3279535209005585,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.6227501356366474,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.4564683547165867,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.507481230268745,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5026497669006937,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5479548303197956,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Pythagorean": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.49999999900000003,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.5829474992053365,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.4170524987946636,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.4982306456751205,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.4864637441059212,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.44258920415133063,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.4997877676178621,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.41533507367228495,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5024021145895904,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.46650169931308905,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.3790661996188041,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5523388651859023,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.5163192145530435,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.5313070831731482,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.48958090195889964,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5603575258284942,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.5663256185946878,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5100631054790521,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.4669606826601662,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.5169068270973943,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5012410028005353,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.4226880194086048,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.5390884753352705,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5433949161417306,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.5190632523680448,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.48695359026686935,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.47250328158683425,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.5079546765460514,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5374648838280844,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5075569936677916,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.48457951594714677,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5017677289864525,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Bayesian-Shrunk": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.5000000000000001,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.4925635050454249,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.5004584050842623,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.5171080007255093,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.37379341501490293,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.570677088869852,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.44898516892659457,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.4946745233398431,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.4235870577290111,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.521305759658887,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.6087476677435513,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.55889823633404,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.5377179401241764,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.4758067416008002,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.6475493725234371,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.5097427695903616,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.4198374638746497,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.45023757970166967,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.5312591181548071,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5286032070450429,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.4182845166591824,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.5105809625983061,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5311593512607069,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.5034061519351152,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.4778575437248749,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.3863805803127356,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.48735239239373923,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5688347510742228,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.6090182264059221,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.44756413951746793,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.4565712240060188,
+        "winner": "TKR",
+        "correct": true
+      }
+    ],
+    "LogReg": [
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.7791458481185808,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.8042132234140458,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.9779024693523467,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.7179868175115056,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.023827233984786783,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.013363485804879092,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.860422861971083,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.8373592074508402,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.8525410570456113,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.8236764611371382,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.9203612861852554,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.9063330571334439,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.44194773854982455,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.05064113243610444,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.8395289518932029,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.4972294221111217,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.7451478312920107,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.718313020738926,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.6414866084484001,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.5240237393178894,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.6733723929645324,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.6441630189506651,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.7828113544205809,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.6233355340177613,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "RandomForest": [
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.69,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.77,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.78,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.73,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.44,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.335,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.78,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.94,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.745,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.855,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.77,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.855,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.41152777777777777,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.36,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.7511111111111112,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.6454166666666667,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.7093333333333334,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.5205454545454545,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.6367820512820512,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.5109069264069264,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.6031785714285715,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.7686623376623376,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.7835992063492063,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.6263030303030304,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "GradientBoosting": [
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.9813649640527254,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.9970378640982973,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.9970378640982973,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.4801849366753624,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 2.4271887392614775e-05,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 2.4271887392614775e-05,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.9999839740730364,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.9999839740730364,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.990838225182722,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.9999867641939272,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.9999812711835048,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.9999867641939272,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.012090578610496061,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.011363523172963116,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.9906610232759339,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.042584312142655796,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.996321945770984,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.9621862401351922,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.9992749988285448,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.018445722186336437,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.9955711752135943,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.9861071825744665,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.9744311066510597,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.9827995304473043,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Ensemble-Stacked": [
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.8168369373904354,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.8570836958374478,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.9183134444835481,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.6427239180622893,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.1546171686240598,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.11612925256409058,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.8801356120147065,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.9257810605079588,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.8627930940761112,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.8928877417770217,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.8967808524562534,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.9204399404424569,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.2885220316460328,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.14066821853635586,
+        "winner": "BT",
+        "correct": false
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.8604336954267492,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.3950768003068148,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.8169343701321093,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.7336815718065243,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.7591812195196654,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.35112546263705074,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.7573740465355661,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.7996441797291564,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.8469472224736156,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.7441460315893652,
+        "winner": "TKR",
+        "correct": false
+      }
+    ],
+    "Baseline-50/50": [
+      {
+        "match": 1,
+        "team_a": "SKNP",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 2,
+        "team_a": "SKNP",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 3,
+        "team_a": "ABF",
+        "team_b": "BT",
+        "prob_a": 0.5,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 4,
+        "team_a": "SKNP",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 6,
+        "team_a": "SKNP",
+        "team_b": "SLK",
+        "prob_a": 0.5,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 7,
+        "team_a": "ABF",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 8,
+        "team_a": "SKNP",
+        "team_b": "BT",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": true
+      },
+      {
+        "match": 9,
+        "team_a": "ABF",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 10,
+        "team_a": "SLK",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": false
+      },
+      {
+        "match": 11,
+        "team_a": "ABF",
+        "team_b": "SKNP",
+        "prob_a": 0.5,
+        "winner": "ABF",
+        "correct": true
+      },
+      {
+        "match": 13,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 14,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 15,
+        "team_a": "SLK",
+        "team_b": "SKNP",
+        "prob_a": 0.5,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 16,
+        "team_a": "TKR",
+        "team_b": "BT",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 17,
+        "team_a": "TKR",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 18,
+        "team_a": "SLK",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "SLK",
+        "correct": true
+      },
+      {
+        "match": 19,
+        "team_a": "TKR",
+        "team_b": "SKNP",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 20,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5,
+        "winner": "SLK",
+        "correct": false
+      },
+      {
+        "match": 21,
+        "team_a": "BT",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 22,
+        "team_a": "BT",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 23,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 24,
+        "team_a": "BT",
+        "team_b": "SLK",
+        "prob_a": 0.5,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 25,
+        "team_a": "GAW",
+        "team_b": "SKNP",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 26,
+        "team_a": "GAW",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "ABF",
+        "correct": false
+      },
+      {
+        "match": 27,
+        "team_a": "BT",
+        "team_b": "SKNP",
+        "prob_a": 0.5,
+        "winner": "SKNP",
+        "correct": false
+      },
+      {
+        "match": 28,
+        "team_a": "BT",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "BT",
+        "correct": true
+      },
+      {
+        "match": 29,
+        "team_a": "GAW",
+        "team_b": "SLK",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 30,
+        "team_a": "GAW",
+        "team_b": "BT",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": true
+      },
+      {
+        "match": 31,
+        "team_a": "TKR",
+        "team_b": "ABF",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 32,
+        "team_a": "SLK",
+        "team_b": "GAW",
+        "prob_a": 0.5,
+        "winner": "GAW",
+        "correct": false
+      },
+      {
+        "match": 33,
+        "team_a": "TKR",
+        "team_b": "SLK",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": true
+      },
+      {
+        "match": 34,
+        "team_a": "GAW",
+        "team_b": "TKR",
+        "prob_a": 0.5,
+        "winner": "TKR",
+        "correct": false
+      }
+    ]
+  }
+}
