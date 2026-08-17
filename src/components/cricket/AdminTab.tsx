@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
-import { Plus, Trash2, Trophy, RefreshCw, Database, Info, CheckCircle2, XCircle, Pencil, AlertTriangle } from 'lucide-react';
+import { Plus, Trash2, Trophy, RefreshCw, Database, Info, CheckCircle2, XCircle, Pencil, AlertTriangle, Users } from 'lucide-react';
 import type { League } from '@/app/page';
 
 interface TeamOption {
@@ -44,7 +44,7 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
       </Card>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
           <TabsTrigger value="match">
             <Plus className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Add Match</span>
           </TabsTrigger>
@@ -52,7 +52,10 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
             <Trophy className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Create League</span>
           </TabsTrigger>
           <TabsTrigger value="manage">
-            <Pencil className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Manage Leagues</span>
+            <Pencil className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Leagues</span>
+          </TabsTrigger>
+          <TabsTrigger value="teams">
+            <Users className="mr-1.5 h-4 w-4" /> <span className="hidden sm:inline">Teams</span>
           </TabsTrigger>
         </TabsList>
 
@@ -64,6 +67,9 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
         </TabsContent>
         <TabsContent value="manage" className="mt-4">
           <ManageLeaguesForm leagues={leagues} onDataChanged={onDataChanged} />
+        </TabsContent>
+        <TabsContent value="teams" className="mt-4">
+          <ManageTeamsForm leagues={leagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
         </TabsContent>
       </Tabs>
     </div>
@@ -958,6 +964,422 @@ async function deleteLeague(league: League, onDataChanged: (opts?: { switchToLea
     toast.success(`League ${league.id} deleted. Removed ${j.deleted.matches} matches, ${j.deleted.teams} teams, ${j.deleted.predictions} predictions.`);
     // Switch back to IPL (or first available) and refresh
     onDataChanged({ switchToLeague: 'IPL' });
+  } catch {
+    toast.error('Network error');
+  }
+}
+
+// ============================================================
+// Manage Teams (Add + Edit + Delete teams in a league)
+// ============================================================
+interface TeamRow {
+  id: string;
+  name: string;
+  fullName: string;
+  city: string | null;
+  color: string;
+  elo: number;
+  matches: number;
+  wins: number;
+}
+
+function ManageTeamsForm({ leagues, onDataChanged, initialLeague }: {
+  leagues: League[];
+  onDataChanged: (opts?: { switchToLeague?: string }) => void;
+  initialLeague: string;
+}) {
+  const [leagueId, setLeagueId] = useState(initialLeague || leagues[0]?.id || 'IPL');
+  const [teams, setTeams] = useState<TeamRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  // Sync with parent's activeLeague
+  useEffect(() => {
+    if (initialLeague && initialLeague !== leagueId) {
+      setLeagueId(initialLeague);
+    }
+  }, [initialLeague]);
+
+  // Load teams when league changes
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      try {
+        setLoading(true);
+        const r = await fetch(`/api/teams?league=${leagueId}`);
+        const j = await r.json();
+        if (cancelled) return;
+        setTeams(j.teams || []);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [leagueId]);
+
+  const refreshTeams = async () => {
+    const r = await fetch(`/api/teams?league=${leagueId}`);
+    const j = await r.json();
+    setTeams(j.teams || []);
+  };
+
+  if (loading) return <div className="text-sm text-slate-500">Loading teams…</div>;
+
+  return (
+    <div className="space-y-4">
+      {/* League selector + Add button */}
+      <Card className="p-4">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <Users className="h-5 w-5 text-slate-500" />
+            <div>
+              <h3 className="text-base font-bold tracking-tight">Teams in {leagueId}</h3>
+              <p className="text-xs text-slate-500">
+                {teams.length} teams · sorted by ELO
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Select value={leagueId} onValueChange={(v) => { setLeagueId(v); setEditingId(null); setShowAddForm(false); }}>
+              <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {leagues.map((l) => (
+                  <SelectItem key={l.id} value={l.id}>{l.name} ({l.season})</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button size="sm" onClick={() => { setShowAddForm(!showAddForm); setEditingId(null); }}>
+              <Plus className="mr-1 h-4 w-4" /> Add Team
+            </Button>
+          </div>
+        </div>
+
+        {teams.length === 0 ? (
+          <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
+            No teams in this league yet. Click "Add Team" to create the first one.
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {teams.map((t) => (
+              <div
+                key={t.id}
+                className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-3 transition-colors hover:bg-slate-50"
+              >
+                <div
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white shadow-sm"
+                  style={{ background: t.color }}
+                >
+                  {t.name.slice(0, 3)}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-semibold">{t.fullName}</span>
+                    <span className="text-xs text-slate-400">({t.name})</span>
+                  </div>
+                  <div className="text-xs text-slate-500">
+                    ELO {t.elo.toFixed(0)} · {t.matches} matches · {t.wins}W-{t.matches - t.wins}L
+                    {t.city && <> · {t.city}</>}
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => { setEditingId(editingId === t.id ? null : t.id); setShowAddForm(false); }}
+                  >
+                    <Pencil className="mr-1 h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">{editingId === t.id ? 'Cancel' : 'Edit'}</span>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-rose-200 text-rose-700 hover:bg-rose-50"
+                    onClick={() => deleteTeam(t, refreshTeams, onDataChanged)}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+
+      {showAddForm && (
+        <AddTeamForm
+          leagueId={leagueId}
+          onCreated={async () => { await refreshTeams(); setShowAddForm(false); onDataChanged(); }}
+          onCancel={() => setShowAddForm(false)}
+        />
+      )}
+
+      {editingId && (
+        <EditTeamForm
+          team={teams.find((t) => t.id === editingId)!}
+          onSaved={async () => { await refreshTeams(); setEditingId(null); onDataChanged(); }}
+          onCancel={() => setEditingId(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ============================================================
+// Add Team Form
+// ============================================================
+const PRESET_COLORS = [
+  '#d32f2f', '#f57c00', '#fbc02d', '#388e3c', '#1976d2',
+  '#512da8', '#7b1fa2', '#00838f', '#5d4037', '#6a1b9a',
+  '#c62828', '#0288d1', '#00bfa5', '#e91e63', '#303f9f',
+  '#64748b',
+];
+
+function AddTeamForm({ leagueId, onCreated, onCancel }: {
+  leagueId: string;
+  onCreated: () => void;
+  onCancel: () => void;
+}) {
+  const [shortCode, setShortCode] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [city, setCity] = useState('');
+  const [color, setColor] = useState(PRESET_COLORS[0]);
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async () => {
+    if (!shortCode.trim()) {
+      toast.error('Short code is required');
+      return;
+    }
+    if (!/^[A-Za-z0-9]{1,8}$/.test(shortCode)) {
+      toast.error('Short code must be 1-8 letters/numbers, no spaces');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const r = await fetch('/api/admin/team', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          leagueId,
+          shortCode: shortCode.toUpperCase(),
+          fullName: fullName || shortCode.toUpperCase(),
+          color,
+          city: city || undefined,
+        }),
+      });
+      const j = await r.json();
+      if (!r.ok) {
+        toast.error(j.error || 'Failed to create team');
+        return;
+      }
+      toast.success(`Team ${shortCode.toUpperCase()} created in ${leagueId}!`);
+      setShortCode(''); setFullName(''); setCity('');
+      onCreated();
+    } catch {
+      toast.error('Network error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Card className="p-5 border-emerald-200">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Plus className="h-5 w-5 text-emerald-600" />
+          <h3 className="text-lg font-bold tracking-tight">Add Team to {leagueId}</h3>
+        </div>
+        <Button size="sm" variant="ghost" onClick={onCancel}>✕</Button>
+      </div>
+
+      <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Short Code * (e.g. "DHK")</Label>
+          <Input
+            className="mt-1 font-mono uppercase"
+            value={shortCode}
+            onChange={(e) => setShortCode(e.target.value.toUpperCase())}
+            placeholder="DHK"
+            maxLength={8}
+          />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Full Name (optional)</Label>
+          <Input
+            className="mt-1"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Dhaka Dynamites"
+          />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">City (optional)</Label>
+          <Input
+            className="mt-1"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Dhaka"
+          />
+        </div>
+      </div>
+
+      {/* Color picker */}
+      <div className="mb-4">
+        <Label className="text-xs uppercase tracking-wide text-slate-500">Team Color</Label>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          {PRESET_COLORS.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setColor(c)}
+              className={`h-9 w-9 rounded-lg border-2 transition-all ${color === c ? 'border-slate-900 scale-110 shadow-md' : 'border-transparent hover:scale-105'}`}
+              style={{ background: c }}
+              aria-label={c}
+            />
+          ))}
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            className="h-9 w-9 cursor-pointer rounded-lg border border-slate-300 bg-transparent p-0"
+            title="Custom color"
+          />
+        </div>
+        <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+          <span>Selected:</span>
+          <div className="flex h-5 w-5 items-center justify-center rounded text-[10px] font-bold text-white" style={{ background: color }}>
+            {shortCode.slice(0, 2) || '?'}
+          </div>
+          <span className="font-mono">{color}</span>
+        </div>
+      </div>
+
+      <div className="mb-4 rounded-md bg-slate-50 p-3 text-xs text-slate-600">
+        <Info className="mr-1 inline h-3 w-3" />
+        New team starts at ELO 1500 with 0 matches. You can immediately add matches
+        featuring this team — the system will track its stats from there.
+      </div>
+
+      <Button onClick={submit} disabled={submitting || !shortCode.trim()} className="w-full">
+        {submitting ? <RefreshCw className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
+        <span className="ml-1.5">
+          {submitting ? 'Creating...' : `Add Team${shortCode ? ` (${shortCode.toUpperCase()})` : ''}`}
+        </span>
+      </Button>
+    </Card>
+  );
+}
+
+// ============================================================
+// Edit Team Form
+// ============================================================
+function EditTeamForm({ team, onSaved, onCancel }: {
+  team: TeamRow;
+  onSaved: () => void;
+  onCancel: () => void;
+}) {
+  const [fullName, setFullName] = useState(team.fullName);
+  const [city, setCity] = useState(team.city || '');
+  const [color, setColor] = useState(team.color);
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async () => {
+    setSubmitting(true);
+    try {
+      const r = await fetch(`/api/admin/team/${team.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, city, color }),
+      });
+      const j = await r.json();
+      if (!r.ok) {
+        toast.error(j.error || 'Failed to update team');
+        return;
+      }
+      toast.success(`Team ${team.name} updated!`);
+      onSaved();
+    } catch {
+      toast.error('Network error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Card className="p-5 border-emerald-200">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Pencil className="h-5 w-5 text-emerald-600" />
+          <h3 className="text-lg font-bold tracking-tight">Edit Team: {team.name}</h3>
+        </div>
+        <Button size="sm" variant="ghost" onClick={onCancel}>✕</Button>
+      </div>
+
+      <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">Full Name</Label>
+          <Input className="mt-1" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+        </div>
+        <div>
+          <Label className="text-xs uppercase tracking-wide text-slate-500">City</Label>
+          <Input className="mt-1" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Dhaka" />
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <Label className="text-xs uppercase tracking-wide text-slate-500">Team Color</Label>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          {PRESET_COLORS.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setColor(c)}
+              className={`h-9 w-9 rounded-lg border-2 transition-all ${color === c ? 'border-slate-900 scale-110 shadow-md' : 'border-transparent hover:scale-105'}`}
+              style={{ background: c }}
+              aria-label={c}
+            />
+          ))}
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            className="h-9 w-9 cursor-pointer rounded-lg border border-slate-300 bg-transparent p-0"
+          />
+        </div>
+      </div>
+
+      <div className="mb-4 rounded-md bg-slate-50 p-3 text-xs text-slate-600">
+        <Info className="mr-1 inline h-3 w-3" />
+        Only metadata is editable. Stats (ELO, matches, wins) are auto-managed by the
+        walk-forward recompute when matches are added/deleted.
+      </div>
+
+      <Button onClick={submit} disabled={submitting} className="w-full">
+        {submitting ? <RefreshCw className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
+        <span className="ml-1.5">{submitting ? 'Saving...' : 'Save Changes'}</span>
+      </Button>
+    </Card>
+  );
+}
+
+// ============================================================
+// Delete Team (with confirmation)
+// ============================================================
+async function deleteTeam(team: TeamRow, refreshTeams: () => Promise<void>, onDataChanged: () => void) {
+  const msg = `Delete team ${team.name} (${team.fullName})?\n\nThis will permanently delete:\n  • The team record\n  • ${team.matches} matches this team played in\n  • All predictions for those matches\n\nThis cannot be undone.`;
+  if (!confirm(msg)) return;
+  try {
+    const r = await fetch(`/api/admin/team/${team.id}`, { method: 'DELETE' });
+    const j = await r.json();
+    if (!r.ok) {
+      toast.error(j.error || 'Failed to delete team');
+      return;
+    }
+    toast.success(`Team ${team.name} deleted. Removed ${j.deleted.matches} matches, ${j.deleted.predictions} predictions.`);
+    await refreshTeams();
+    onDataChanged();
   } catch {
     toast.error('Network error');
   }
