@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { isValidationLeague } from '@/lib/constants';
 
 /**
  * PATCH /api/admin/team/[id]
@@ -16,6 +17,16 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
+
+    // Lock: prevent editing teams in validation leagues (extract leagueId from team ID)
+    const leagueId = id.split('_')[0];
+    if (isValidationLeague(leagueId)) {
+      return NextResponse.json(
+        { error: `Team ${id} is in a locked validation league. It cannot be edited.` },
+        { status: 403 }
+      );
+    }
+
     const body = await req.json();
     const { name, fullName, color, city } = body;
 
@@ -81,6 +92,15 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
+
+    // Lock: prevent deleting teams in validation leagues
+    const leagueId = id.split('_')[0];
+    if (isValidationLeague(leagueId)) {
+      return NextResponse.json(
+        { error: `Team ${id} is in a locked validation league. It cannot be deleted.` },
+        { status: 403 }
+      );
+    }
 
     const existing = await db.team.findUnique({ where: { id } });
     if (!existing) {

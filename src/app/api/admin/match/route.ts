@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { isValidationLeague } from '@/lib/constants';
 import {
   initTeamState, applyMatchResult, predictAllSystems, type TeamState,
 } from '@/lib/prediction-engine';
@@ -130,6 +131,14 @@ export async function POST(req: NextRequest) {
     if (!leagueId || !date || !teamAId || !teamBId) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
+
+    // Lock: prevent adding matches to validation leagues
+    if (isValidationLeague(leagueId)) {
+      return NextResponse.json(
+        { error: `League ${leagueId} is locked (validation data). Matches cannot be added.` },
+        { status: 403 }
+      );
+    }
     if (teamAId === teamBId) {
       return NextResponse.json({ error: 'Teams must be different' }, { status: 400 });
     }
@@ -243,6 +252,14 @@ export async function DELETE(req: NextRequest) {
     const matchId = req.nextUrl.searchParams.get('matchId');
     if (!leagueId || !matchId) {
       return NextResponse.json({ error: 'leagueId and matchId required' }, { status: 400 });
+    }
+
+    // Lock: prevent deleting matches from validation leagues
+    if (isValidationLeague(leagueId)) {
+      return NextResponse.json(
+        { error: `League ${leagueId} is locked (validation data). Matches cannot be deleted.` },
+        { status: 403 }
+      );
     }
 
     const match = await db.match.findUnique({ where: { id: matchId } });

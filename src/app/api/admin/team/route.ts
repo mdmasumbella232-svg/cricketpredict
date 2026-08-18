@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { isValidationLeague } from '@/lib/constants';
 
 /**
  * POST /api/admin/team
@@ -25,6 +26,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: 'leagueId and shortCode are required' },
         { status: 400 }
+      );
+    }
+
+    // Lock: prevent adding teams to validation leagues
+    if (isValidationLeague(leagueId)) {
+      return NextResponse.json(
+        { error: `League ${leagueId} is locked (validation data). Teams cannot be added.` },
+        { status: 403 }
       );
     }
 

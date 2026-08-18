@@ -19,12 +19,17 @@ interface TeamOption {
   elo: number;
 }
 
+// Re-export League with isValidation field (already in the imported type)
+type LeagueWithFlag = League;
+
 export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
   leagues: League[];
   onDataChanged: (opts?: { switchToLeague?: string }) => void;
   activeLeague: string;
 }) {
   const [tab, setTab] = useState('match');
+  // Only show non-validation leagues in admin forms
+  const visibleLeagues = leagues.filter((l) => !l.isValidation);
 
   return (
     <div className="space-y-4">
@@ -60,16 +65,16 @@ export default function AdminTab({ leagues, onDataChanged, activeLeague }: {
         </TabsList>
 
         <TabsContent value="match" className="mt-4">
-          <AddMatchForm leagues={leagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
+          <AddMatchForm leagues={visibleLeagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
         </TabsContent>
         <TabsContent value="league" className="mt-4">
           <CreateLeagueForm onDataChanged={onDataChanged} />
         </TabsContent>
         <TabsContent value="manage" className="mt-4">
-          <ManageLeaguesForm leagues={leagues} onDataChanged={onDataChanged} />
+          <ManageLeaguesForm leagues={visibleLeagues} onDataChanged={onDataChanged} />
         </TabsContent>
         <TabsContent value="teams" className="mt-4">
-          <ManageTeamsForm leagues={leagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
+          <ManageTeamsForm leagues={visibleLeagues} onDataChanged={onDataChanged} initialLeague={activeLeague} />
         </TabsContent>
       </Tabs>
     </div>

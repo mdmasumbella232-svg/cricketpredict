@@ -30,11 +30,12 @@ export interface League {
   optimalWeights: {
     elo: number; rr: number; form: number; wpct: number; h2h: number; momentum: number;
   };
+  isValidation?: boolean;
 }
 
 export default function Home() {
   const [leagues, setLeagues] = useState<League[]>([]);
-  const [activeLeague, setActiveLeague] = useState<string>('IPL');
+  const [activeLeague, setActiveLeague] = useState<string>('HUNDRED');
   const [loading, setLoading] = useState(true);
   // refreshKey increments on any admin data change (add/delete match, create league).
   // Passing it as `key` to tab components forces them to remount and refetch.
@@ -45,13 +46,19 @@ export default function Home() {
     try {
       const r = await fetch('/api/leagues');
       const j = await r.json();
-      setLeagues(j.leagues || []);
+      const allLeagues = j.leagues || [];
+      setLeagues(allLeagues);
+      // Auto-select first non-validation league if current selection is invalid
+      const visible = allLeagues.filter((l: League) => !l.isValidation);
+      if (visible.length > 0 && !visible.find((l: League) => l.id === activeLeague)) {
+        setActiveLeague(visible[0].id);
+      }
     } catch {
       toast.error('Failed to load leagues');
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [activeLeague]);
 
   useEffect(() => { fetchLeagues(); }, [fetchLeagues]);
 
@@ -115,7 +122,7 @@ export default function Home() {
                 <SelectValue placeholder="Select league" />
               </SelectTrigger>
               <SelectContent>
-                {leagues.map((l) => (
+                {leagues.filter((l) => !l.isValidation).map((l) => (
                   <SelectItem key={l.id} value={l.id}>
                     <span className="font-semibold">{l.name}</span>
                     <span className="ml-2 text-xs text-slate-500">{l.season}</span>

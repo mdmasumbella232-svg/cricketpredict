@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { isValidationLeague } from '@/lib/constants';
 
 export async function GET() {
   const leagues = await db.league.findMany({
@@ -11,6 +12,7 @@ export async function GET() {
     teamCount: l._count.teams, matchCount: l._count.matches,
     bestSystem: l.bestSystem, bestAccuracy: l.bestAccuracy,
     optimalWeights: l.optimalWeights ? JSON.parse(l.optimalWeights) : null,
+    isValidation: isValidationLeague(l.id),
   }));
   return NextResponse.json({ leagues: result });
 }
