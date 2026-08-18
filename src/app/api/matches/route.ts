@@ -22,6 +22,8 @@ export async function GET(req: NextRequest) {
 
   const result = matches.map((m) => {
     const pred = m.predictions[0];
+    const predictedSide = pred ? (pred.probA > 0.5 ? 'A' : 'B') : null;
+    const predictedWinner = predictedSide ? (predictedSide === 'A' ? m.teamA.name : m.teamB.name) : null;
     return {
       id: m.id,
       matchNo: m.matchNo,
@@ -31,7 +33,13 @@ export async function GET(req: NextRequest) {
       teamB: { id: m.teamB.id, name: m.teamB.name, color: m.teamB.color, score: m.teamBScore, wkts: m.teamBWickets, overs: m.teamBOvers },
       winnerId: m.winnerId,
       winner: m.winnerId === m.teamAId ? m.teamA.name : m.teamB.name,
-      prediction: pred ? { probA: pred.probA, correct: pred.correct } : null,
+      prediction: pred ? {
+        probA: pred.probA,
+        correct: pred.correct,
+        predictedWinner: predictedWinner,
+        predictedSide: predictedSide,
+        confidence: Math.abs(pred.probA - 0.5) < 0.08 ? 'Low' : Math.abs(pred.probA - 0.5) < 0.18 ? 'Medium' : 'High',
+      } : null,
     };
   });
 

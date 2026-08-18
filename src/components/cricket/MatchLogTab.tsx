@@ -112,8 +112,10 @@ export default function MatchLogTab({ league }: { league: string }) {
                     <div className="flex shrink-0 items-center gap-2">
                       {m.prediction && (
                         <div className="hidden text-right sm:block">
-                          <div className="text-xs text-slate-500">P({m.teamA.name})</div>
-                          <div className="font-bold text-slate-900">{probAPct.toFixed(0)}%</div>
+                          <div className="text-xs text-slate-500">Picks</div>
+                          <div className={`font-bold ${m.prediction.correct ? 'text-emerald-700' : 'text-rose-700'}`}>
+                            {m.prediction.predictedWinner}
+                          </div>
                         </div>
                       )}
                       {m.prediction?.correct ? (
